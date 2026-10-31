@@ -205,6 +205,7 @@ Gitee 上直接面向 A210 的倉庫很少，且 **Gitee 的站內搜尋 API 目
 
 ## 10. 哪裡買
 
+- **苦芽科技淘寶企業店**：https://item.taobao.com/item.htm?id=1034868327078&skuId=6052940225420 —— 頁面需登入淘寶才能看到商品詳情，連結本身回傳 200
 - Sipeed 矽速科技淘寶官方店，¥1899（實測頁面 200）：https://www.taobao.com/list/item/Vk81VmhvN0d2L05DN3gzZ1Z1akk5dz09.htm
 - AliExpress 上的第三方（chipboard store）標「Sipeed ZHIHE A210」，8GB/64GB 配置約 $334（頁面會跳到登入牆，價格只能作參考）
 - 知合計算本身沒有公開直銷頁與報價頁

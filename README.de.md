@@ -205,6 +205,7 @@ Auf Gitee gibt es nur wenige Repositories, die sich direkt an den A210 richten, 
 
 ## 10. Bezugsquellen
 
+- **Kubuds (苦芽科技) Unternehmensshop auf Taobao**: https://item.taobao.com/item.htm?id=1034868327078&skuId=6052940225420 — für die Artikeldetails ist ein Taobao-Login nötig, der Link selbst liefert 200
 - Offizieller Taobao-Shop von Sipeed (矽速科技), ¥1899 (Seite liefert im Test 200): https://www.taobao.com/list/item/Vk81VmhvN0d2L05DN3gzZ1Z1akk5dz09.htm
 - Ein Drittanbieter auf AliExpress (chipboard store) führt es als „Sipeed ZHIHE A210", Konfiguration 8GB/64GB für etwa $334 (die Seite springt auf eine Login-Wand, der Preis taugt nur als Anhaltspunkt)
 - Zhihe Computing selbst veröffentlicht keine Seite für Direktverkauf oder Preisauskunft
