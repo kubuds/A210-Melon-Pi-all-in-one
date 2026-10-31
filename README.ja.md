@@ -205,7 +205,7 @@ Gitee で A210 に直接対応するリポジトリはごく少数で、しか�
 
 ## 10. 購入先
 
-- Sipeed（矽速科技）の Taobao 公式店、¥1899（実測でページは 200）：https://www.taobao.com/list/item/Vk81VmhvN0d2L05DN3gzZ1Z1akk5dz09.htm
+- **苦芽科技（Kubuds）の Taobao 企業店**：https://item.taobao.com/item.htm?id=1034868327078&skuId=6052940225420 —— 商品詳細の表示には Taobao へのログインが必要です（リンク自体は 200 を返します）
 - AliExpress の第三者（chipboard store）は「Sipeed ZHIHE A210」と表記し、8GB/64GB 構成で約 $334（ページはログイン画面に遷移するため、価格は参考程度に）
 - 知合計算自身は公開の直販ページも見積ページも持っていません
 
