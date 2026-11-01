@@ -121,6 +121,7 @@
 **Upstream-ядро Linux (mainline)**
 
 - [[PATCH 00/18] riscv: add initial support for Zhihe A210 and Melon Pi](https://lists.infradead.org/pipermail/linux-riscv/2026-October/101909.html) — первая версия поддержки в mainline (UART/clock/reset/pinctrl + DT), проверена на Melon Pi V2 со всеми восемью включёнными ядрами; имена файлов дерева устройств `a210-melonpi-v1.dts` / `-v2.dts` — это и есть настоящий источник названия «Melon Pi»
+- [[PATCH RFC 00/18] riscv: add initial Zhihe A210 support using SCMI clocks and resets](https://lists.infradead.org/pipermail/linux-riscv/2026-October/102222.html) — переработка от 2026-10-27, опубликованная как новый RFC, а не как v2: в A210 есть ещё управляющее ядро E902, и регистры тактирования и сброса фактически находятся в ведении прошивки SCMI на Zephyr, работающей на нём; в этой версии нативные драйверы clk/reset убраны в пользу стандартных протоколов SCMI clock/reset, добавлен драйвер mailbox-дверного звонка AP→E902; загрузка до shell на UART на Melon Pi V2 со всеми восемью ядрами. **Ни одна из версий по состоянию на 2026-11-01 в mainline не принята**
 
 **Ядра и деревья устройств (пока в ветках разработки отдельных проектов)**
 
@@ -135,6 +136,8 @@
 - [riseproject-dev/opensbi](https://github.com/riseproject-dev/opensbi) — ветка `v1.5-a210`, содержит `platform/generic/zhihe/a210.c`
 - [openeuler-riscv/opensbi-zhihe-a210](https://github.com/openeuler-riscv/opensbi-zhihe-a210) — вендорский порт OpenSBI
 - [revyos/ruyiedk2](https://github.com/revyos/ruyiedk2) — платформенная прошивка EDK2/UEFI; в README указана поддержка Melon Pi V1 и V2, в `docs/melonpi.md` описаны загрузка из ОЗУ напрямую и USB Fastboot
+- Загрузочная цепочка SCMI (ветки `a210/scmi`, 2026-10-22): [coreboot](https://github.com/revyos/coreboot/tree/a210/scmi) · [OpenSBI](https://github.com/revyos/opensbi/tree/a210/scmi) · [EDK2](https://github.com/revyos/edk2/tree/a210/scmi) · [RevySR/linux, полное дерево с остальной периферией](https://github.com/RevySR/linux/tree/a210/scmi-bootchain-v7.3) — соответствует RFC выше; у `revyos/ruyiedk2` тоже есть ветка `a210/scmi`
+- [RevySR/zephyr `xuantie/scmi`](https://github.com/RevySR/zephyr/tree/xuantie/scmi) — прошивка SCMI-сервера для E902 (Zephyr); именно она управляет последовательностями питания, PMIC и DVFS процессора
 
 **Уровень дистрибутивов**
 

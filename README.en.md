@@ -121,6 +121,7 @@ Note this is the **V3** carrier, one generation away from the official V2 docume
 **Upstream Linux**
 
 - [[PATCH 00/18] riscv: add initial support for Zhihe A210 and Melon Pi](https://lists.infradead.org/pipermail/linux-riscv/2026-October/101909.html) — the first mainline support (UART/clock/reset/pinctrl + DT), validated booting all eight cores on Melon Pi V2; the device-tree files `a210-melonpi-v1.dts` / `-v2.dts` are where the "Melon Pi" name actually comes from
+- [[PATCH RFC 00/18] riscv: add initial Zhihe A210 support using SCMI clocks and resets](https://lists.infradead.org/pipermail/linux-riscv/2026-October/102222.html) — the 2026-10-27 rework, posted as a new RFC rather than a v2: the A210 also carries an E902 management core, and the clock and reset registers are actually owned by the Zephyr SCMI firmware running on it, so this version drops the native clk/reset drivers for the standard SCMI clock/reset protocols and adds an AP-to-E902 doorbell mailbox driver; it boots to a UART shell on Melon Pi V2 with all eight cores. **Neither series is in mainline as of 2026-11-01**
 
 **Kernels and device trees (still in vendor and community trees)**
 
@@ -135,6 +136,8 @@ Note this is the **V3** carrier, one generation away from the official V2 docume
 - [riseproject-dev/opensbi](https://github.com/riseproject-dev/opensbi) — `v1.5-a210` branch with `platform/generic/zhihe/a210.c`
 - [openeuler-riscv/opensbi-zhihe-a210](https://github.com/openeuler-riscv/opensbi-zhihe-a210) — vendor OpenSBI port
 - [revyos/ruyiedk2](https://github.com/revyos/ruyiedk2) — EDK2/UEFI platform firmware; the README covers Melon Pi V1 and V2, and `docs/melonpi.md` documents native RAM boot and USB fastboot
+- SCMI boot chain (`a210/scmi` branches, 2026-10-22): [coreboot](https://github.com/revyos/coreboot/tree/a210/scmi) · [OpenSBI](https://github.com/revyos/opensbi/tree/a210/scmi) · [EDK2](https://github.com/revyos/edk2/tree/a210/scmi) · [RevySR/linux, the full tree with the remaining peripherals](https://github.com/RevySR/linux/tree/a210/scmi-bootchain-v7.3) — matches the RFC above; `revyos/ruyiedk2` has an `a210/scmi` branch too
+- [RevySR/zephyr `xuantie/scmi`](https://github.com/RevySR/zephyr/tree/xuantie/scmi) — the SCMI server firmware running on the E902 (Zephyr); it owns the power, PMIC and CPU DVFS sequencing
 
 **Distribution layer**
 
