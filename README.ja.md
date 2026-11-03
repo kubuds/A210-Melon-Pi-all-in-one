@@ -121,7 +121,8 @@
 **アップストリーム Linux メインライン**
 
 - [[PATCH 00/18] riscv: add initial support for Zhihe A210 and Melon Pi](https://lists.infradead.org/pipermail/linux-riscv/2026-October/101909.html) —— 初版のメインライン対応（UART/clock/reset/pinctrl + DT）。Melon Pi V2 上で 8 コアすべてを有効にして検証済みです。デバイスツリーファイル名 `a210-melonpi-v1.dts` / `-v2.dts` こそが「Melon Pi」という名前の本当の出所です
-- [[PATCH RFC 00/18] riscv: add initial Zhihe A210 support using SCMI clocks and resets](https://lists.infradead.org/pipermail/linux-riscv/2026-October/102222.html) —— 2026-10-27 の作り直し版で、v2 ではなく新規 RFC として投稿されました。A210 には E902 管理コアも載っており、クロックとリセットのレジスタは実際にはそこで動く Zephyr の SCMI ファームウェアが管理しています。この版はネイティブの clk/reset ドライバーを削除して標準の SCMI clock/reset プロトコルに切り替え、AP→E902 のドアベル mailbox ドライバーを追加しました。Melon Pi V2 で 8 コアを有効にして UART シェルまで起動しています。ネイティブドライバーの版（上の項目）もこの版も、**2026-11-01 時点ではメインラインに入っていません**
+- [[PATCH RFC 00/18] riscv: add initial Zhihe A210 support using SCMI clocks and resets](https://lists.infradead.org/pipermail/linux-riscv/2026-October/102222.html) —— 2026-10-27 の作り直し版（作者の番号では v2）です。A210 には E902 管理コアも載っており、クロックとリセットのレジスタは実際にはそこで動く Zephyr の SCMI ファームウェアが管理しています。この版はネイティブの clk/reset ドライバーを削除して標準の SCMI clock/reset プロトコルに切り替え、AP→E902 のドアベル mailbox ドライバーを追加しました。Melon Pi V2 で 8 コアを有効にして UART シェルまで起動しています。ネイティブドライバーの版（上の項目）もこの版も、**2026-11-02 時点でもメインラインに入っていません**。最新の v3 は下の項目です
+- [[PATCH RFC v3 00/17] riscv: add initial Zhihe A210 support using SCMI clocks and resets](https://lists.infradead.org/pipermail/linux-riscv/2026-November/102729.html) —— 2026-11-02 の v3 です。v7.4-rc1 にリベースし、`arm_scmi` の ARM アーキテクチャ依存を外して RISC-V でもビルドできるようにしました。SCMI clock/reset ID は dt-bindings から DTS 隣のヘッダーへ移し、mailbox バインディングは固定の local / remote リージョンに変更しています。Melon Pi V2 では riscv defconfig で 8 コアを有効にしてシリアルシェルまで起動します。知合のファームウェアが SCMI をネイティブにサポートするのを待つため、まだ RFC のままです
 
 **カーネルとデバイスツリー（各社の開発ライン上にあるもの）**
 
@@ -136,8 +137,9 @@
 - [riseproject-dev/opensbi](https://github.com/riseproject-dev/opensbi) —— `v1.5-a210` ブランチ。`platform/generic/zhihe/a210.c` を含みます
 - [openeuler-riscv/opensbi-zhihe-a210](https://github.com/openeuler-riscv/opensbi-zhihe-a210) —— OpenSBI のベンダーポート
 - [revyos/ruyiedk2](https://github.com/revyos/ruyiedk2) —— EDK2/UEFI プラットフォームファームウェア。README に Melon Pi V1 と V2 への対応が明記されており、`docs/melonpi.md` にネイティブ RAM ブートと USB Fastboot が記録されています
-- SCMI ブートチェーン（`a210/scmi` ブランチ、2026-10-22）：[coreboot](https://github.com/revyos/coreboot/tree/a210/scmi) · [OpenSBI](https://github.com/revyos/opensbi/tree/a210/scmi) · [EDK2](https://github.com/revyos/edk2/tree/a210/scmi) · [RevySR/linux 残りの周辺機器を含む完全なツリー](https://github.com/RevySR/linux/tree/a210/scmi-bootchain-v7.3) —— 上記 RFC と対になる構成です。`revyos/ruyiedk2` にも同名の `a210/scmi` ブランチがあります
-- [RevySR/zephyr `xuantie/scmi`](https://github.com/RevySR/zephyr/tree/xuantie/scmi) —— E902 上で動く SCMI サーバーファームウェア（Zephyr）。電源、PMIC、CPU DVFS のシーケンスを担当します
+- SCMI ブートチェーン（`a210/scmi-v3` ブランチ、2026-11-02）：[coreboot](https://github.com/revyos/coreboot/tree/a210/scmi-v3) · [OpenSBI](https://github.com/revyos/opensbi/tree/a210/scmi-v3) · [EDK2](https://github.com/revyos/edk2/tree/a210/scmi-v3) · [RevySR/linux 残りの周辺機器を含む完全なツリー](https://github.com/RevySR/linux/tree/a210/scmi-v3) —— v3 RFC と対になる構成です。以前の `a210/scmi` ブランチも残っており、`revyos/ruyiedk2` にも `a210/scmi-v3` があります
+- [RevySR/zephyr `xuantie/scmi-v3`](https://github.com/RevySR/zephyr/tree/xuantie/scmi-v3) —— E902 上で動く SCMI サーバーファームウェア（Zephyr）で、電源、PMIC、CPU DVFS のタイミングを担当します
+- [RevySR/linux `a210/vcodec-v3`](https://github.com/RevySR/linux/tree/a210/vcodec-v3) —— 2026-11-02 に追加されたビデオデコードの開発ラインです。hantro ドライバーに A210 の VC9000D デコーダー（VP9 対応）を追加し、対応するデバイスツリーノードも入れています
 
 **ディストリビューション層**
 
