@@ -121,7 +121,8 @@
 **上游 Linux 主線**
 
 - [[PATCH 00/18] riscv: add initial support for Zhihe A210 and Melon Pi](https://lists.infradead.org/pipermail/linux-riscv/2026-October/101909.html) —— 首版主線支援（UART/clock/reset/pinctrl + DT），已在 Melon Pi V2 上 8 核全開驗證；裝置樹檔名 `a210-melonpi-v1.dts` / `-v2.dts` 就是「Melon Pi」這個名字的真正出處
-- [[PATCH RFC 00/18] riscv: add initial Zhihe A210 support using SCMI clocks and resets](https://lists.infradead.org/pipermail/linux-riscv/2026-October/102222.html) —— 2026-10-27 的重做版，不是 v2 而是另起一版：A210 還有一顆 E902 管理核，時鐘與復位暫存器實際上由它執行的 Zephyr SCMI 韌體掌管，這一版刪掉原生 clk/reset 驅動、改走標準 SCMI clock/reset 協定，另加 AP→E902 門鈴 mailbox 驅動；已在 Melon Pi V2 上 8 核起到 UART shell。原生驅動那版（上面那條）與這一版**截至 2026-11-01 都還沒進主線**
+- [[PATCH RFC 00/18] riscv: add initial Zhihe A210 support using SCMI clocks and resets](https://lists.infradead.org/pipermail/linux-riscv/2026-October/102222.html) —— 2026-10-27 的重做版（作者編號 v2）：A210 還有一顆 E902 管理核，時鐘與復位暫存器實際上由它執行的 Zephyr SCMI 韌體掌管，這一版刪掉原生 clk/reset 驅動、改走標準 SCMI clock/reset 協定，另加 AP→E902 門鈴 mailbox 驅動；已在 Melon Pi V2 上 8 核起到 UART shell。原生驅動那版（上面那條）與這一版**截至 2026-11-02 都還沒進主線**；最新的 v3 見下條
+- [[PATCH RFC v3 00/17] riscv: add initial Zhihe A210 support using SCMI clocks and resets](https://lists.infradead.org/pipermail/linux-riscv/2026-November/102729.html) —— 2026-11-02 的 v3：rebase 到 v7.4-rc1；`arm_scmi` 移除 ARM 架構依賴（RISC-V 也能編），SCMI clock/reset ID 從 dt-bindings 移到 DTS 旁的 header，mailbox 綁定改為固定的 local / remote 區域；Melon Pi V2 用 riscv defconfig 8 核開到序列埠 shell。仍因等知合韌體原生支援 SCMI 而保持 RFC
 
 **核心與裝置樹（還在各家的開發線裡）**
 
@@ -136,8 +137,9 @@
 - [riseproject-dev/opensbi](https://github.com/riseproject-dev/opensbi) —— `v1.5-a210` 分支，含 `platform/generic/zhihe/a210.c`
 - [openeuler-riscv/opensbi-zhihe-a210](https://github.com/openeuler-riscv/opensbi-zhihe-a210) —— OpenSBI 廠商移植
 - [revyos/ruyiedk2](https://github.com/revyos/ruyiedk2) —— EDK2/UEFI 平台韌體，README 寫明支援 Melon Pi V1 與 V2，`docs/melonpi.md` 記錄原生 RAM 開機與 USB Fastboot
-- SCMI 啟動鏈（`a210/scmi` 分支，2026-10-22）：[coreboot](https://github.com/revyos/coreboot/tree/a210/scmi) · [OpenSBI](https://github.com/revyos/opensbi/tree/a210/scmi) · [EDK2](https://github.com/revyos/edk2/tree/a210/scmi) · [RevySR/linux 含其餘周邊的完整樹](https://github.com/RevySR/linux/tree/a210/scmi-bootchain-v7.3) —— 與上面那版 RFC 配套；`revyos/ruyiedk2` 也有同名 `a210/scmi` 分支
-- [RevySR/zephyr `xuantie/scmi`](https://github.com/RevySR/zephyr/tree/xuantie/scmi) —— 跑在 E902 上的 SCMI 伺服器韌體（Zephyr），電源、PMIC 與 CPU DVFS 時序都由它負責
+- SCMI 啟動鏈（`a210/scmi-v3` 分支，2026-11-02）：[coreboot](https://github.com/revyos/coreboot/tree/a210/scmi-v3) · [OpenSBI](https://github.com/revyos/opensbi/tree/a210/scmi-v3) · [EDK2](https://github.com/revyos/edk2/tree/a210/scmi-v3) · [RevySR/linux 含其餘周邊的完整樹](https://github.com/RevySR/linux/tree/a210/scmi-v3) —— 與 v3 RFC 配套；早期的 `a210/scmi` 分支仍在，`revyos/ruyiedk2` 也有 `a210/scmi-v3`
+- [RevySR/zephyr `xuantie/scmi-v3`](https://github.com/RevySR/zephyr/tree/xuantie/scmi-v3) —— 跑在 E902 上的 SCMI 服務端韌體（Zephyr），電源、PMIC 與 CPU DVFS 時序都由它負責
+- [RevySR/linux `a210/vcodec-v3`](https://github.com/RevySR/linux/tree/a210/vcodec-v3) —— 2026-11-02 新增的視訊解碼開發線：hantro 驅動加入 A210 的 VC9000D 解碼器（含 VP9），並補上對應的裝置樹節點
 
 **發行版層**
 
