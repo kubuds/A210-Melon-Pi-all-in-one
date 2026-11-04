@@ -138,8 +138,9 @@
 - [openeuler-riscv/opensbi-zhihe-a210](https://github.com/openeuler-riscv/opensbi-zhihe-a210) —— OpenSBI のベンダーポート
 - [revyos/ruyiedk2](https://github.com/revyos/ruyiedk2) —— EDK2/UEFI プラットフォームファームウェア。README に Melon Pi V1 と V2 への対応が明記されており、`docs/melonpi.md` にネイティブ RAM ブートと USB Fastboot が記録されています
 - SCMI ブートチェーン（`a210/scmi-v3` ブランチ、2026-11-02）：[coreboot](https://github.com/revyos/coreboot/tree/a210/scmi-v3) · [OpenSBI](https://github.com/revyos/opensbi/tree/a210/scmi-v3) · [EDK2](https://github.com/revyos/edk2/tree/a210/scmi-v3) · [RevySR/linux 残りの周辺機器を含む完全なツリー](https://github.com/RevySR/linux/tree/a210/scmi-v3) —— v3 RFC と対になる構成です。以前の `a210/scmi` ブランチも残っており、`revyos/ruyiedk2` にも `a210/scmi-v3` があります
-- [RevySR/zephyr `xuantie/scmi-v3`](https://github.com/RevySR/zephyr/tree/xuantie/scmi-v3) —— E902 上で動く SCMI サーバーファームウェア（Zephyr）で、電源、PMIC、CPU DVFS のタイミングを担当します
+- [RevySR/zephyr `xuantie/scmi-v3`](https://github.com/RevySR/zephyr/tree/xuantie/scmi-v3) —— E902 上で動く SCMI サーバーファームウェア（Zephyr）で、電源、PMIC、CPU DVFS のタイミングを担当します。もう 1 本の `xuantie/vcodec-v3`（2026-11-02）は VC9000D 用に VP クロック、リセット、電源ドメインを用意し、SCMI サーバー経由でビデオコーデックのリソースを AP に公開します
 - [RevySR/linux `a210/vcodec-v3`](https://github.com/RevySR/linux/tree/a210/vcodec-v3) —— 2026-11-02 に追加されたビデオデコードの開発ラインです。hantro ドライバーに A210 の VC9000D デコーダー（VP9 対応）を追加し、対応するデバイスツリーノードも入れています
+- RevySR/linux の A210 ブランチは SCMI だけではありません。[a210/bringup-v7.3](https://github.com/RevySR/linux/tree/a210/bringup-v7.3)（2026-10-22 の bring-up）、[a210/scmi-bootchain-v7.3](https://github.com/RevySR/linux/tree/a210/scmi-bootchain-v7.3)（10-27 の SCMI ブートチェーン）、[b4/a210-init](https://github.com/RevySR/linux/tree/b4/a210-init)（10-21 の最初のパッチ系列）の 3 本があり、検証したい範囲で選べます
 
 **ディストリビューション層**
 
@@ -176,9 +177,10 @@ Gitee で A210 に直接対応するリポジトリはごく少数で、しか�
 
 ## 8. 動画
 
-**Bilibili（サイト全体で 2 本のみ、しかも Melon Pi という名前を含むものは 1 本もありません）**
+**Bilibili（サイト全体で 3 本のみ、しかも Melon Pi という名前を含むものは 1 本もありません）**
 
-- [知合計算 Archimedes A210 RISC-V 開発ボード開梱 XuanTie C920 コア + NPU 通推一体](https://www.bilibili.com/video/BV1fJrnBsENd/) · DSOE1024 · 2026-01-14 · 約 1.7k 再生 —— **現在このボードを実際に撮影した唯一の動画**（2 分 48 秒）
+- [A210 x AGIROS による知能ロボットソリューション](https://www.bilibili.com/video/BV12KFKzkELG/) · AGIROS オープンソースコミュニティ · 2026-02-02 · 約 62 再生 —— AGIROS Meetup 北京站の Part5 で、登壇した申壮氏は知合計算技術（杭州）のシニア AI エンジニアです。**知合計算の現役エンジニアが A210 を語る唯一の動画**（14 分 10 秒）で、内容はソリューションの説明でありスコアの話ではありません
+- [知合計算 Archimedes A210 RISC-V 開発ボード開梱 XuanTie C920 コア + NPU 通推一体](https://www.bilibili.com/video/BV1fJrnBsENd/) · DSOE1024 · 2026-01-14 · 約 1.7k 再生 —— **現在このボードを開梱する唯一の動画**（2 分 48 秒）
 - [知合計算 A210 登場、「産学研」クローズドループの模範例、A600 の登場が近い](https://www.bilibili.com/video/BV19R84zsEVH/) · 石榴派-袁德俊 · 2025-07-26 · 428 再生 —— サミットの情報解説であり、ボードの実機検証ではありません
 
 **YouTube（1 本のみ、しかも仕様の列挙 + 購入ガイド）**

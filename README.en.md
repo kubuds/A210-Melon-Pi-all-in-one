@@ -138,8 +138,9 @@ Note this is the **V3** carrier, one generation away from the official V2 docume
 - [openeuler-riscv/opensbi-zhihe-a210](https://github.com/openeuler-riscv/opensbi-zhihe-a210) — vendor OpenSBI port
 - [revyos/ruyiedk2](https://github.com/revyos/ruyiedk2) — EDK2/UEFI platform firmware; the README covers Melon Pi V1 and V2, and `docs/melonpi.md` documents native RAM boot and USB fastboot
 - SCMI boot chain (`a210/scmi-v3` branches, 2026-11-02): [coreboot](https://github.com/revyos/coreboot/tree/a210/scmi-v3) · [OpenSBI](https://github.com/revyos/opensbi/tree/a210/scmi-v3) · [EDK2](https://github.com/revyos/edk2/tree/a210/scmi-v3) · [RevySR/linux, the full tree with the remaining peripherals](https://github.com/RevySR/linux/tree/a210/scmi-v3) — matches the v3 RFC; the earlier `a210/scmi` branches are still there, and `revyos/ruyiedk2` has `a210/scmi-v3` as well
-- [RevySR/zephyr `xuantie/scmi-v3`](https://github.com/RevySR/zephyr/tree/xuantie/scmi-v3) — the SCMI server firmware (Zephyr) running on the E902; it owns power, the PMIC and CPU DVFS timing
+- [RevySR/zephyr `xuantie/scmi-v3`](https://github.com/RevySR/zephyr/tree/xuantie/scmi-v3) — the SCMI server firmware (Zephyr) running on the E902; it owns power, the PMIC and CPU DVFS timing; a second branch, `xuantie/vcodec-v3` (2026-11-02), prepares the VP clocks, resets and power domains for the VC9000D and exports the video codec resources to the AP through the SCMI server
 - [RevySR/linux `a210/vcodec-v3`](https://github.com/RevySR/linux/tree/a210/vcodec-v3) — new 2026-11-02 development branch for video decoding: it adds the A210's VC9000D decoder (including VP9) to the hantro driver plus the matching device-tree nodes
+- RevySR/linux carries more A210 branches than the SCMI one: [a210/bringup-v7.3](https://github.com/RevySR/linux/tree/a210/bringup-v7.3) (bring-up, 2026-10-22), [a210/scmi-bootchain-v7.3](https://github.com/RevySR/linux/tree/a210/scmi-bootchain-v7.3) (SCMI boot chain, 10-27) and [b4/a210-init](https://github.com/RevySR/linux/tree/b4/a210-init) (the first patch series, 10-21) — pick the one matching what you want to test
 
 **Distribution layer**
 
@@ -176,9 +177,10 @@ Very few Gitee repositories target the A210 directly, and **Gitee's search API c
 
 ## 8. Videos
 
-**Bilibili (only two on the whole site, and neither is named Melon Pi)**
+**Bilibili (only three on the whole site, and none is named Melon Pi)**
 
-- [Zhihe Archimedes A210 RISC-V board unboxing — XuanTie C920 core + NPU](https://www.bilibili.com/video/BV1fJrnBsENd/) · DSOE1024 · 2026-01-14 · ~1.7k views — **the only video that actually films this board** (2 min 48 s)
+- [Robotics solutions built on A210 x AGIROS](https://www.bilibili.com/video/BV12KFKzkELG/) · AGIROS open-source community · 2026-02-02 · ~62 views — part 5 of the AGIROS Meetup in Beijing; the speaker, Shen Zhuang, is a senior AI engineer at Zhihe Computing Technology (Hangzhou); **the only video so far where a serving Zhihe engineer talks about the A210** (14 min 10 s), about the solution rather than benchmark numbers
+- [Zhihe Archimedes A210 RISC-V board unboxing — XuanTie C920 core + NPU](https://www.bilibili.com/video/BV1fJrnBsENd/) · DSOE1024 · 2026-01-14 · ~1.7k views — **the only unboxing footage of this board** (2 min 48 s)
 - [Zhihe A210 arrives; the A600 "industry–academia" loop](https://www.bilibili.com/video/BV19R84zsEVH/) · 石榴派-袁德俊 · 2025-07-26 · 428 views — summit commentary, not a hands-on
 
 **YouTube (only one, and it is a spec sheet plus a shopping link)**

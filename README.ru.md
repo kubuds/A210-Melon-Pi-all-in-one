@@ -138,8 +138,9 @@
 - [openeuler-riscv/opensbi-zhihe-a210](https://github.com/openeuler-riscv/opensbi-zhihe-a210) — вендорский порт OpenSBI
 - [revyos/ruyiedk2](https://github.com/revyos/ruyiedk2) — платформенная прошивка EDK2/UEFI; в README указана поддержка Melon Pi V1 и V2, в `docs/melonpi.md` описаны загрузка из ОЗУ напрямую и USB Fastboot
 - Загрузочная цепочка SCMI (ветки `a210/scmi-v3`, 2026-11-02): [coreboot](https://github.com/revyos/coreboot/tree/a210/scmi-v3) · [OpenSBI](https://github.com/revyos/opensbi/tree/a210/scmi-v3) · [EDK2](https://github.com/revyos/edk2/tree/a210/scmi-v3) · [RevySR/linux, полное дерево с остальной периферией](https://github.com/RevySR/linux/tree/a210/scmi-v3) — соответствует RFC v3; прежние ветки `a210/scmi` тоже на месте, у `revyos/ruyiedk2` есть ветка `a210/scmi-v3`
-- [RevySR/zephyr `xuantie/scmi-v3`](https://github.com/RevySR/zephyr/tree/xuantie/scmi-v3) — серверная прошивка SCMI (Zephyr) на E902, отвечает за питание, PMIC и тайминги CPU DVFS
+- [RevySR/zephyr `xuantie/scmi-v3`](https://github.com/RevySR/zephyr/tree/xuantie/scmi-v3) — серверная прошивка SCMI (Zephyr) на E902, отвечает за питание, PMIC и тайминги CPU DVFS; вторая ветка `xuantie/vcodec-v3` (2026-11-02) готовит для VC9000D тактирование VP, сбросы и домены питания и экспортирует ресурсы видеокодека на AP через сервер SCMI
 - [RevySR/linux `a210/vcodec-v3`](https://github.com/RevySR/linux/tree/a210/vcodec-v3) — новая ветка от 2026-11-02 по декодированию видео: в драйвер hantro добавлен декодер VC9000D для A210 (включая VP9) и соответствующие узлы дерева устройств
+- У RevySR/linux есть и другие ветки A210, помимо SCMI: [a210/bringup-v7.3](https://github.com/RevySR/linux/tree/a210/bringup-v7.3) (bring-up, 2026-10-22), [a210/scmi-bootchain-v7.3](https://github.com/RevySR/linux/tree/a210/scmi-bootchain-v7.3) (загрузочная цепочка SCMI, 10-27) и [b4/a210-init](https://github.com/RevySR/linux/tree/b4/a210-init) (первая серия патчей, 10-21) — выбирайте по тому, что хотите проверить
 
 **Уровень дистрибутивов**
 
@@ -176,9 +177,10 @@
 
 ## 8. Видео
 
-**Bilibili (на всей площадке всего 2 ролика, и ни один не назван Melon Pi)**
+**Bilibili (на всей площадке всего 3 ролика, и ни один не назван Melon Pi)**
 
-- [Распаковка отладочной платы Zhihe Computing Archimedes A210 RISC-V: ядро XuanTie C920 + NPU, совмещающий вычисления и инференс](https://www.bilibili.com/video/BV1fJrnBsENd/) · DSOE1024 · 2026-01-14 · около 1,7 тыс. просмотров — **единственное видео, где эта плата действительно снята** (2 мин 48 с)
+- [Решение для интеллектуальной робототехники на базе A210 x AGIROS](https://www.bilibili.com/video/BV12KFKzkELG/) · сообщество AGIROS · 2026-02-02 · около 62 просмотров — часть 5 встречи AGIROS Meetup в Пекине; докладчик Шэнь Чжуан — старший AI-инженер Zhihe Computing Technology (Ханчжоу); **единственное видео, где о A210 рассказывает действующий инженер Zhihe** (14 мин 10 с), и речь в нём о решении, а не о цифрах бенчмарков
+- [Распаковка отладочной платы Zhihe Computing Archimedes A210 RISC-V: ядро XuanTie C920 + NPU, совмещающий вычисления и инференс](https://www.bilibili.com/video/BV1fJrnBsENd/) · DSOE1024 · 2026-01-14 · около 1,7 тыс. просмотров — **единственное видео с распаковкой этой платы** (2 мин 48 с)
 - [Выход Zhihe Computing A210: эталонный пример замкнутого цикла «наука — производство», на подходе A600](https://www.bilibili.com/video/BV19R84zsEVH/) · 石榴派-袁德俊 · 2025-07-26 · 428 просмотров — разбор новостей с саммита, а не испытания платы
 
 **YouTube (всего один ролик, и это перечень характеристик плюс реклама магазина)**

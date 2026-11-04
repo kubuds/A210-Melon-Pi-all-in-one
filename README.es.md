@@ -138,8 +138,9 @@ Ojo: es la placa base **V3**, una generación distinta de la documentación ofic
 - [openeuler-riscv/opensbi-zhihe-a210](https://github.com/openeuler-riscv/opensbi-zhihe-a210) — port de OpenSBI del fabricante
 - [revyos/ruyiedk2](https://github.com/revyos/ruyiedk2) — firmware de plataforma EDK2/UEFI; el README indica que admite Melon Pi V1 y V2, y `docs/melonpi.md` documenta el arranque nativo en RAM y el USB Fastboot
 - Cadena de arranque SCMI (ramas `a210/scmi-v3`, 2026-11-02): [coreboot](https://github.com/revyos/coreboot/tree/a210/scmi-v3) · [OpenSBI](https://github.com/revyos/opensbi/tree/a210/scmi-v3) · [EDK2](https://github.com/revyos/edk2/tree/a210/scmi-v3) · [RevySR/linux, árbol completo con el resto de periféricos](https://github.com/RevySR/linux/tree/a210/scmi-v3) — acompaña al RFC v3; las ramas anteriores `a210/scmi` siguen ahí y `revyos/ruyiedk2` también tiene `a210/scmi-v3`
-- [RevySR/zephyr `xuantie/scmi-v3`](https://github.com/RevySR/zephyr/tree/xuantie/scmi-v3) — firmware servidor de SCMI (Zephyr) sobre el E902; se encarga de la alimentación, el PMIC y los tiempos de CPU DVFS
+- [RevySR/zephyr `xuantie/scmi-v3`](https://github.com/RevySR/zephyr/tree/xuantie/scmi-v3) — firmware servidor de SCMI (Zephyr) sobre el E902; se encarga de la alimentación, el PMIC y los tiempos de CPU DVFS; una segunda rama, `xuantie/vcodec-v3` (2026-11-02), prepara los relojes VP, los resets y los dominios de alimentación del VC9000D y exporta los recursos de códec de vídeo al AP mediante el servidor SCMI
 - [RevySR/linux `a210/vcodec-v3`](https://github.com/RevySR/linux/tree/a210/vcodec-v3) — nueva línea de desarrollo del 2026-11-02 para decodificación de vídeo: añade al driver hantro el decodificador VC9000D de la A210 (con VP9) y los nodos correspondientes del árbol de dispositivos
+- RevySR/linux tiene más ramas A210 que la de SCMI: [a210/bringup-v7.3](https://github.com/RevySR/linux/tree/a210/bringup-v7.3) (bring-up, 2026-10-22), [a210/scmi-bootchain-v7.3](https://github.com/RevySR/linux/tree/a210/scmi-bootchain-v7.3) (cadena de arranque SCMI, 10-27) y [b4/a210-init](https://github.com/RevySR/linux/tree/b4/a210-init) (la primera serie de parches, 10-21) — elige la que corresponda a lo que quieras verificar
 
 **Capa de distribución**
 
@@ -176,9 +177,10 @@ Hay muy pocos repositorios de Gitee dirigidos directamente a la A210, y **la API
 
 ## 8. Vídeos
 
-**Bilibili (solo hay 2 en todo el sitio, y ninguno se llama Melon Pi)**
+**Bilibili (solo hay 3 en todo el sitio, y ninguno se llama Melon Pi)**
 
-- [Unboxing de la placa de desarrollo Zhihe Computing Archimedes A210 RISC-V: núcleo XuanTie C920 + NPU con cómputo e inferencia integrados](https://www.bilibili.com/video/BV1fJrnBsENd/) · DSOE1024 · 2026-01-14 · unas 1.7k reproducciones — **el único vídeo que realmente filma esta placa** (2 min 48 s)
+- [Soluciones de robótica inteligente basadas en A210 x AGIROS](https://www.bilibili.com/video/BV12KFKzkELG/) · comunidad open source AGIROS · 2026-02-02 · unas 62 reproducciones — parte 5 del AGIROS Meetup de Pekín; el ponente, Shen Zhuang, es ingeniero sénior de IA en Zhihe Computing Technology (Hangzhou); **el único vídeo hasta ahora en el que un ingeniero en activo de Zhihe habla del A210** (14 min 10 s), sobre la solución y no sobre cifras de benchmark
+- [Unboxing de la placa de desarrollo Zhihe Computing Archimedes A210 RISC-V: núcleo XuanTie C920 + NPU con cómputo e inferencia integrados](https://www.bilibili.com/video/BV1fJrnBsENd/) · DSOE1024 · 2026-01-14 · unas 1.7k reproducciones — **el único vídeo de unboxing de esta placa** (2 min 48 s)
 - [Llega el Zhihe Computing A210: el caso modélico del ciclo «industria-universidad-investigación» y la A600 a la vista](https://www.bilibili.com/video/BV19R84zsEVH/) · 石榴派-袁德俊 · 2025-07-26 · 428 reproducciones — comentario de las noticias de la cumbre, no una prueba de la placa
 
 **YouTube (solo hay 1, y es un listado de especificaciones más una guía de compra)**
