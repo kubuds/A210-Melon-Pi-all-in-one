@@ -138,8 +138,9 @@
 - [openeuler-riscv/opensbi-zhihe-a210](https://github.com/openeuler-riscv/opensbi-zhihe-a210) —— OpenSBI 厂商移植
 - [revyos/ruyiedk2](https://github.com/revyos/ruyiedk2) —— EDK2/UEFI 平台固件，README 写明支持 Melon Pi V1 与 V2，`docs/melonpi.md` 记录原生 RAM 启动与 USB Fastboot
 - SCMI 启动链（`a210/scmi-v3` 分支，2026-11-02）：[coreboot](https://github.com/revyos/coreboot/tree/a210/scmi-v3) · [OpenSBI](https://github.com/revyos/opensbi/tree/a210/scmi-v3) · [EDK2](https://github.com/revyos/edk2/tree/a210/scmi-v3) · [RevySR/linux 含其余外设的完整树](https://github.com/RevySR/linux/tree/a210/scmi-v3) —— 与 v3 RFC 配套；早期的 `a210/scmi` 分支仍在，`revyos/ruyiedk2` 也有 `a210/scmi-v3`
-- [RevySR/zephyr `xuantie/scmi-v3`](https://github.com/RevySR/zephyr/tree/xuantie/scmi-v3) —— 跑在 E902 上的 SCMI 服务端固件（Zephyr），电源、PMIC 与 CPU DVFS 时序都由它负责
+- [RevySR/zephyr `xuantie/scmi-v3`](https://github.com/RevySR/zephyr/tree/xuantie/scmi-v3) —— 跑在 E902 上的 SCMI 服务端固件（Zephyr），电源、PMIC 与 CPU DVFS 时序都由它负责；另一条 `xuantie/vcodec-v3`（2026-11-02）给 VC9000D 备好 VP 时钟、复位与电源域，并通过 SCMI 服务端把视频编解码资源导出给 AP
 - [RevySR/linux `a210/vcodec-v3`](https://github.com/RevySR/linux/tree/a210/vcodec-v3) —— 2026-11-02 新增的视频解码开发线：hantro 驱动加入 A210 的 VC9000D 解码器（含 VP9），并补上对应的设备树节点
+- RevySR/linux 的 A210 分支不止 SCMI 一条：[a210/bringup-v7.3](https://github.com/RevySR/linux/tree/a210/bringup-v7.3)（2026-10-22 的 bring-up）、[a210/scmi-bootchain-v7.3](https://github.com/RevySR/linux/tree/a210/scmi-bootchain-v7.3)（10-27 的 SCMI 启动链）、[b4/a210-init](https://github.com/RevySR/linux/tree/b4/a210-init)（10-21 的首版补丁系列）—— 按你要验证的环节挑
 
 **发行版层**
 
@@ -176,9 +177,10 @@ Gitee 上直接面向 A210 的仓库很少，且 **Gitee 的站内搜索 API 目
 
 ## 8. 视频
 
-**B 站（全站只有 2 条，且没有一条以 Melon Pi 命名）**
+**B 站（全站只有 3 条，且没有一条以 Melon Pi 命名）**
 
-- [知合计算 阿基米德 A210 RISC-V 开发板开箱 玄铁 C920 核心 + NPU 通推一体](https://www.bilibili.com/video/BV1fJrnBsENd/) · DSOE1024 · 2026-01-14 · 约 1.7k 播放 —— **目前唯一真正拍这块板子的视频**（2 分 48 秒）
+- [基于 A210 x AGIROS 的智能机器人解决方案](https://www.bilibili.com/video/BV12KFKzkELG/) · AGIROS开源社区 · 2026-02-02 · 约 62 播放 —— AGIROS Meetup 北京站 Part5，讲者申壮是知合计算技术（杭州）的高级 AI 工程师；**这是目前唯一由知合在职工程师讲 A210 的视频**（14 分 10 秒），讲方案不跑分
+- [知合计算 阿基米德 A210 RISC-V 开发板开箱 玄铁 C920 核心 + NPU 通推一体](https://www.bilibili.com/video/BV1fJrnBsENd/) · DSOE1024 · 2026-01-14 · 约 1.7k 播放 —— **目前唯一一条开箱实拍**（2 分 48 秒）
 - [知合计算 A210 问世，「产学研」闭环的标杆案例 A600 呼之欲出](https://www.bilibili.com/video/BV19R84zsEVH/) · 石榴派-袁德俊 · 2025-07-26 · 428 播放 —— 峰会资讯解读，不是板子实测
 
 **YouTube（只有 1 条，且是规格罗列 + 导购）**
