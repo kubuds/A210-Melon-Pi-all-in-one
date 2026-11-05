@@ -177,8 +177,9 @@ Very few Gitee repositories target the A210 directly, and **Gitee's search API c
 
 ## 8. Videos
 
-**Bilibili (only three on the whole site, and none is named Melon Pi)**
+**Bilibili (only four on the whole site, and just one is named Melon Pi)**
 
+- [Zhihe XuanTie A210 Melon Pi dev board hands-on](https://www.bilibili.com/video/BV1wdx969Exj/) · donatello1996 · 2026-11-04 · ~34 views — a 21-second clip of two LED matrix panels showing temperature, humidity, pressure and gesture status plus a face animation; **the board itself never appears in frame**, so the only evidence that this is the A210 is the title and the tags (RISC-V, XuanTie, dev board). The first Bilibili video with Melon Pi in its title
 - [Robotics solutions built on A210 x AGIROS](https://www.bilibili.com/video/BV12KFKzkELG/) · AGIROS open-source community · 2026-02-02 · ~62 views — part 5 of the AGIROS Meetup in Beijing; the speaker, Shen Zhuang, is a senior AI engineer at Zhihe Computing Technology (Hangzhou); **the only video so far where a serving Zhihe engineer talks about the A210** (14 min 10 s), about the solution rather than benchmark numbers
 - [Zhihe Archimedes A210 RISC-V board unboxing — XuanTie C920 core + NPU](https://www.bilibili.com/video/BV1fJrnBsENd/) · DSOE1024 · 2026-01-14 · ~1.7k views — **the only unboxing footage of this board** (2 min 48 s)
 - [Zhihe A210 arrives; the A600 "industry–academia" loop](https://www.bilibili.com/video/BV19R84zsEVH/) · 石榴派-袁德俊 · 2025-07-26 · 428 views — summit commentary, not a hands-on

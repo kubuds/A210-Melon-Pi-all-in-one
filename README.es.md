@@ -177,8 +177,9 @@ Hay muy pocos repositorios de Gitee dirigidos directamente a la A210, y **la API
 
 ## 8. Vídeos
 
-**Bilibili (solo hay 3 en todo el sitio, y ninguno se llama Melon Pi)**
+**Bilibili (solo hay 4 en todo el sitio, y solo uno se llama Melon Pi)**
 
+- [Prueba de la placa de desarrollo Zhihe XuanTie A210 Melon Pi](https://www.bilibili.com/video/BV1wdx969Exj/) · donatello1996 · 2026-11-04 · unas 34 reproducciones — un clip de 21 segundos: dos paneles de matriz de LED muestran temperatura, humedad, presión y estado de gestos, además de una animación de una cara; **la placa nunca aparece en imagen**, así que lo único que indica que es la A210 es el título y las etiquetas (RISC-V, XuanTie, placa de desarrollo). El primer vídeo de Bilibili con Melon Pi en el título
 - [Soluciones de robótica inteligente basadas en A210 x AGIROS](https://www.bilibili.com/video/BV12KFKzkELG/) · comunidad open source AGIROS · 2026-02-02 · unas 62 reproducciones — parte 5 del AGIROS Meetup de Pekín; el ponente, Shen Zhuang, es ingeniero sénior de IA en Zhihe Computing Technology (Hangzhou); **el único vídeo hasta ahora en el que un ingeniero en activo de Zhihe habla del A210** (14 min 10 s), sobre la solución y no sobre cifras de benchmark
 - [Unboxing de la placa de desarrollo Zhihe Computing Archimedes A210 RISC-V: núcleo XuanTie C920 + NPU con cómputo e inferencia integrados](https://www.bilibili.com/video/BV1fJrnBsENd/) · DSOE1024 · 2026-01-14 · unas 1.7k reproducciones — **el único vídeo de unboxing de esta placa** (2 min 48 s)
 - [Llega el Zhihe Computing A210: el caso modélico del ciclo «industria-universidad-investigación» y la A600 a la vista](https://www.bilibili.com/video/BV19R84zsEVH/) · 石榴派-袁德俊 · 2025-07-26 · 428 reproducciones — comentario de las noticias de la cumbre, no una prueba de la placa

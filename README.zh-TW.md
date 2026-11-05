@@ -177,8 +177,9 @@ Gitee 上直接面向 A210 的倉庫很少，且 **Gitee 的站內搜尋 API 目
 
 ## 8. 影片
 
-**B 站（全站只有 3 條，且沒有一條以 Melon Pi 命名）**
+**B 站（全站只有 4 條，其中只有 1 條標題帶 Melon Pi）**
 
+- [知合玄鐵A210 Melon Pi開發板試用](https://www.bilibili.com/video/BV1wdx969Exj/) · donatello1996 · 2026-11-04 · 約 34 播放 —— 21 秒的點陣屏片段：兩塊點陣屏在刷溫濕度、氣壓讀數與手勢狀態，外加一個表情動畫；**全程沒拍到板子本體**，只能靠標題與標籤（RISC-V、玄鐵、開發板）判斷跑的是這塊板。B 站上第一條標題帶 Melon Pi 的影片
 - [基於 A210 x AGIROS 的智慧機器人解決方案](https://www.bilibili.com/video/BV12KFKzkELG/) · AGIROS 開源社群 · 2026-02-02 · 約 62 播放 —— AGIROS Meetup 北京站 Part5，講者申壯是知合計算技術（杭州）的資深 AI 工程師；**這是目前唯一由知合在職工程師講 A210 的影片**（14 分 10 秒），談方案不談跑分
 - [知合計算 阿基米德 A210 RISC-V 開發板開箱 玄鐵 C920 核心 + NPU 通推一體](https://www.bilibili.com/video/BV1fJrnBsENd/) · DSOE1024 · 2026-01-14 · 約 1.7k 播放 —— **目前唯一一條開箱實拍**（2 分 48 秒）
 - [知合計算 A210 問世，「產學研」閉環的標竿案例 A600 呼之欲出](https://www.bilibili.com/video/BV19R84zsEVH/) · 石榴派-袁德俊 · 2025-07-26 · 428 播放 —— 峰會資訊解讀，不是板子實測

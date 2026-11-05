@@ -177,8 +177,9 @@ Auf Gitee gibt es nur wenige Repositories, die sich direkt an den A210 richten, 
 
 ## 8. Videos
 
-**Bilibili (auf der ganzen Seite nur 3, und keines trägt „Melon Pi" im Namen)**
+**Bilibili (auf der ganzen Seite nur 4, und nur eines trägt „Melon Pi" im Namen)**
 
+- [Praxisversuch mit dem Zhihe XuanTie A210 Melon Pi Entwicklungsboard](https://www.bilibili.com/video/BV1wdx969Exj/) · donatello1996 · 2026-11-04 · ca. 34 Aufrufe – ein 21-Sekunden-Clip: zwei LED-Matrixanzeigen zeigen Temperatur, Luftfeuchte, Luftdruck und Gestenstatus sowie eine Gesichtsanimation; **das Board selbst ist nie im Bild**, dass es sich um den A210 handelt, lässt sich nur am Titel und an den Tags (RISC-V, XuanTie, Entwicklungsboard) ablesen. Das erste Bilibili-Video mit „Melon Pi" im Titel
 - [Robotik-Lösungen auf Basis von A210 x AGIROS](https://www.bilibili.com/video/BV12KFKzkELG/) · AGIROS-Open-Source-Community · 2026-02-02 · ca. 62 Aufrufe – Teil 5 des AGIROS Meetup in Peking; Referent Shen Zhuang ist Senior-AI-Ingenieur bei Zhihe Computing Technology (Hangzhou); **das bislang einzige Video, in dem ein aktiver Zhihe-Ingenieur über den A210 spricht** (14 Minuten 10 Sekunden), und es geht um die Lösung, nicht um Benchmark-Zahlen
 - [Zhihe Computing Archimedes A210 RISC-V-Entwicklungsboard im Unboxing – XuanTie-C920-Kern + NPU für Allzweck- und Inferenzrechnung](https://www.bilibili.com/video/BV1fJrnBsENd/) · DSOE1024 · 2026-01-14 · ca. 1.7k Aufrufe – **das derzeit einzige Unboxing-Video dieses Boards** (2 Minuten 48 Sekunden)
 - [Der Zhihe Computing A210 ist da, der A600 als Vorzeigefall des Kreislaufs „Industrie, Wissenschaft, Forschung"](https://www.bilibili.com/video/BV19R84zsEVH/) · 石榴派-袁德俊 · 2025-07-26 · 428 Aufrufe – Einordnung der Gipfelkonferenz, kein Praxistest des Boards
