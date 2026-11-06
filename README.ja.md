@@ -97,7 +97,7 @@
 | Debian デスクトップイメージ | v2.8.1（ロールバック用） | 734.8 MB | [diskimage_v2.8.1_a210-evb-release_desktop_debian_public.tar.gz](http://developer.zhcomputing.com/downloads/release/zhihesdk/v2.8.1/diskimage_v2.8.1_a210-evb-release_desktop_debian_public.tar.gz) |
 
 - 展開すると `emmc-*.img`、`bootzero-rvbl.bin`、`fastboot_images.sh` / `.bat` が得られます。書き込みモードに入ってからスクリプトをそのまま実行してください
-- **公式アーティファクトリポジトリのディレクトリ索引**（ドキュメントの表より網羅的）：[downloads/release/](http://developer.zhcomputing.com/downloads/release/) —— `zhihesdk` 以下に v2.7.0 / v2.8.0 / v2.8.1 / v2.9.0、`npu` 以下に v1.3–v2.1（ovx-compiler、torq-llm、uca-nn、viplite）、`tools` 以下に 1.17 GB の `ubuntu-24.04-x86_64.v1.7.0.tar.gz` ビルドコンテナがあります
+- **公式アーティファクトリポジトリのディレクトリ索引**（ドキュメントの表より網羅的）：[downloads/release/](http://developer.zhcomputing.com/downloads/release/) —— `zhihesdk` 以下に v2.7.0 / v2.8.0 / v2.8.1 / v2.9.0、加えて `develop/` と `develop-test/` という開発スナップショットのディレクトリ（a210 イメージの最新は 2026-02-05 で v2.9.0 より古いので、新しい版と間違えないこと）、`npu` 以下に v1.3–v2.1（ovx-compiler、torq-llm、uca-nn、viplite）、`tools` 以下に 1.17 GB の `ubuntu-24.04-x86_64.v1.7.0.tar.gz` ビルドコンテナがあります
 - RuyiSDK でインストールを再現したい場合：[ruyisdk/packages-index PR #208](https://github.com/ruyisdk/packages-index/pull/208) が fastboot の手順、2.8.1 の Buildroot と Debian のイメージパッケージ、パーティションテーブルを ruyi のエントリにしており、パーティションマップとチェックサムが含まれているので突き合わせに使えます
 
 ---
@@ -128,7 +128,7 @@
 
 - [RVCK Linux](https://github.com/RVCK-Project/rvck) —— `rvck-6.6` ブランチのデバイスツリーが最も充実しています：[a210.dtsi](https://github.com/RVCK-Project/rvck/blob/rvck-6.6/arch/riscv/boot/dts/zhihe/a210.dtsi) · [a210-melon-pi.dts](https://github.com/RVCK-Project/rvck/blob/rvck-6.6/arch/riscv/boot/dts/zhihe/a210-melon-pi.dts) · [知合デバイスツリーバインディング](https://github.com/RVCK-Project/rvck/blob/rvck-6.6/Documentation/devicetree/bindings/riscv/zhihe.yaml)。コミット検索では A210 関連のコミットが 41 件あり、GPIO/UART/timer/DMA/sdhci を含みます
 - [RVCK：A210 周辺機器サポートの追跡 issue](https://github.com/RVCK-Project/rvck/issues/381) · [マージ済みの周辺機器サポート PR](https://github.com/RVCK-Project/rvck/pull/382)
-- [RevyOS Linux](https://github.com/revyos/linux) —— [A210 メンテナンス項目](https://github.com/revyos/linux/commit/e214610882a3cced2e158a6824ced2543eb1195d) · [温度管理とウォッチドッグのデバイスツリー](https://github.com/revyos/linux/commit/238818df88f8387e07306305462e1b90e7b6b4a4) · [PWM ドライバー](https://github.com/revyos/linux/commit/dd6ce756803d76e879e9d5cbe6d5f528b8216c2d) · [Melon Pi V2 のオーディオ配線](https://github.com/revyos/linux/commit/84fbce4e2eb80e7b4bbcd24b83b149beee474146)。これらのコミットはデフォルトブランチにはありません
+- [RevyOS Linux](https://github.com/revyos/linux) —— [A210 メンテナンス項目](https://github.com/revyos/linux/commit/e214610882a3cced2e158a6824ced2543eb1195d) · [温度管理とウォッチドッグのデバイスツリー](https://github.com/revyos/linux/commit/238818df88f8387e07306305462e1b90e7b6b4a4) · [PWM ドライバー](https://github.com/revyos/linux/commit/dd6ce756803d76e879e9d5cbe6d5f528b8216c2d) · [Melon Pi V2 のオーディオ配線](https://github.com/revyos/linux/commit/84fbce4e2eb80e7b4bbcd24b83b149beee474146)。これらのコミットはすべて `rv/a210-upstream-local` ブランチにあり、デフォルトブランチにはありません
 - [RISE Project：riseproject-dev/linux](https://github.com/riseproject-dev/linux) —— `alibaba-a210` ブランチが存在します
 
 **ブートとファームウェア**
@@ -148,6 +148,9 @@
 - [RevySR/rvck-image](https://github.com/RevySR/rvck-image) —— rootfs／ディスクイメージのビルド。README に「Melon Pi の EDK2 fastboot 経由で書き込む」手順があります（F9 で Fastboot、`flash emmc0`）
 - [riseproject-dev/android_manifest](https://github.com/riseproject-dev/android_manifest) —— RISE Android 17 BSP。Alibaba A210 EVB を対象とし、lunch ターゲット `aosp_a210_evb-trunk_staging-userdebug` を記載しています
 - [riseproject-dev/android_kernel_device](https://github.com/riseproject-dev/android_kernel_device) —— 上記の Kleaf デバイスフラグメント（`alibaba/a210/`、`zhihe_a210.fragment`）
+- [riseproject-dev/android_bootloader_build](https://github.com/riseproject-dev/android_bootloader_build) —— RISE のブートチェーン構築リポジトリ。`alibaba-android-17` ブランチが a210 用の U-Boot + OpenSBI を生成します（AVB 検証は無効、64 GB eMMC 向けの Android GPT レイアウト）
+- [BayLibre/android_device_alibaba_a210](https://github.com/BayLibre/android_device_alibaba_a210) —— BayLibre が保守する AOSP デバイスツリー（`android-17` ブランチ、`PRODUCT_SHIPPING_API_LEVEL` 37）。lunch ターゲットは同じ `aosp_a210_evb-trunk_staging-userdebug` ですが、`TARGET_ARCH_VARIANT := a210` です（C920 も C908 も Zvbb を持たないため riscv64 ベースラインではビルドできません）。U-Boot/OpenSBI とカーネルはプリビルドとしてツリーに置かれ、デバッグコンソールは `ttyS4` 115200。RTL8822CS の WiFi/Bluetooth、HDMI オーディオ、PowerVR の Vulkan 宣言、riscv64 WebView も入っています。上記 RISE のものとは独立した Android 17 ツリーです
+- [BayLibre/android_device_alibaba_a210_kernel](https://github.com/BayLibre/android_device_alibaba_a210_kernel) —— そのデバイスツリー用のカーネルプリビルドリポジトリ。`mainline/` に `Image`、`a210-evb.dtb`、`System.map`、`vmlinux.symvers` と dlkm ディレクトリがあり、開発ブランチ `glaroque/a210-fixes` と `jmasson/a210-fixes-wifi-bt` もあります
 - [RuyiSDK サポートマトリックス：A210 SODIMM V2](https://matrix.ruyisdk.org/zh-CN/boards/A210_SODIMM_V2/)（[ソースディレクトリ](https://github.com/ruyisdk/support-matrix/tree/main/A210_SODIMM_V2) · [others.yml](https://github.com/ruyisdk/support-matrix/blob/main/A210_SODIMM_V2/others.yml)）—— Debian と Buildroot はいずれも `wip` と表示されています。`wip` は「作業中で未完成」の意味であり、使えるという意味ではありません
 - [ruyisdk/ruyi](https://github.com/ruyisdk/ruyi) —— パッケージマネージャー。zhihe ベンダーの命名規則はありますが、**A210 専用のデバイスエントリはまだありません**。ruyi を入れたからといって A210 のイメージが手に入るわけではありません
 

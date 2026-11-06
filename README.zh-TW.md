@@ -97,7 +97,7 @@
 | Debian 桌面映像檔 | v2.8.1（回滾用） | 734.8 MB | [diskimage_v2.8.1_a210-evb-release_desktop_debian_public.tar.gz](http://developer.zhcomputing.com/downloads/release/zhihesdk/v2.8.1/diskimage_v2.8.1_a210-evb-release_desktop_debian_public.tar.gz) |
 
 - 解壓縮後得到 `emmc-*.img`、`bootzero-rvbl.bin`、`fastboot_images.sh` / `.bat`，進燒錄模式後直接跑腳本
-- **官方製品庫目錄索引**（比文件表格更完整）：[downloads/release/](http://developer.zhcomputing.com/downloads/release/) —— `zhihesdk` 下有 v2.7.0 / v2.8.0 / v2.8.1 / v2.9.0，`npu` 下有 v1.3–v2.1（ovx-compiler、torq-llm、uca-nn、viplite），`tools` 下有 1.17 GB 的 `ubuntu-24.04-x86_64.v1.7.0.tar.gz` 建置容器
+- **官方製品庫目錄索引**（比文件表格更完整）：[downloads/release/](http://developer.zhcomputing.com/downloads/release/) —— `zhihesdk` 下有 v2.7.0 / v2.8.0 / v2.8.1 / v2.9.0，另有 `develop/`、`develop-test/` 兩個開發快照目錄（其中 a210 映像檔最新一份是 2026-02-05，比 v2.9.0 舊，別當新版用），`npu` 下有 v1.3–v2.1（ovx-compiler、torq-llm、uca-nn、viplite），`tools` 下有 1.17 GB 的 `ubuntu-24.04-x86_64.v1.7.0.tar.gz` 建置容器
 - 想用 RuyiSDK 重現安裝：[ruyisdk/packages-index PR #208](https://github.com/ruyisdk/packages-index/pull/208) 把 fastboot 流程、2.8.1 的 Buildroot 與 Debian 映像檔包、分割表都做成了 ruyi 條目，內含分割對應與校驗和，可用於交叉核對
 
 ---
@@ -128,7 +128,7 @@
 
 - [RVCK Linux](https://github.com/RVCK-Project/rvck) —— `rvck-6.6` 分支裡裝置樹最完整： [a210.dtsi](https://github.com/RVCK-Project/rvck/blob/rvck-6.6/arch/riscv/boot/dts/zhihe/a210.dtsi) · [a210-melon-pi.dts](https://github.com/RVCK-Project/rvck/blob/rvck-6.6/arch/riscv/boot/dts/zhihe/a210-melon-pi.dts) · [知合裝置樹繫結](https://github.com/RVCK-Project/rvck/blob/rvck-6.6/Documentation/devicetree/bindings/riscv/zhihe.yaml)；提交檢索有 41 筆 A210 相關提交，含 GPIO/UART/timer/DMA/sdhci
 - [RVCK：A210 周邊支援追蹤 issue](https://github.com/RVCK-Project/rvck/issues/381) · [已合併的周邊支援 PR](https://github.com/RVCK-Project/rvck/pull/382)
-- [RevyOS Linux](https://github.com/revyos/linux) —— [A210 維護條目](https://github.com/revyos/linux/commit/e214610882a3cced2e158a6824ced2543eb1195d) · [溫控與看門狗裝置樹](https://github.com/revyos/linux/commit/238818df88f8387e07306305462e1b90e7b6b4a4) · [PWM 驅動](https://github.com/revyos/linux/commit/dd6ce756803d76e879e9d5cbe6d5f528b8216c2d) · [Melon Pi V2 音訊走線](https://github.com/revyos/linux/commit/84fbce4e2eb80e7b4bbcd24b83b149beee474146)。注意這些提交不在預設分支上
+- [RevyOS Linux](https://github.com/revyos/linux) —— [A210 維護條目](https://github.com/revyos/linux/commit/e214610882a3cced2e158a6824ced2543eb1195d) · [溫控與看門狗裝置樹](https://github.com/revyos/linux/commit/238818df88f8387e07306305462e1b90e7b6b4a4) · [PWM 驅動](https://github.com/revyos/linux/commit/dd6ce756803d76e879e9d5cbe6d5f528b8216c2d) · [Melon Pi V2 音訊走線](https://github.com/revyos/linux/commit/84fbce4e2eb80e7b4bbcd24b83b149beee474146)。注意這些提交都在 `rv/a210-upstream-local` 分支上，不在預設分支
 - [RISE Project：riseproject-dev/linux](https://github.com/riseproject-dev/linux) —— 存在 `alibaba-a210` 分支
 
 **引導與韌體**
@@ -148,6 +148,9 @@
 - [RevySR/rvck-image](https://github.com/RevySR/rvck-image) —— rootfs／磁碟映像檔建置，README 給出「透過 Melon Pi EDK2 fastboot 刷寫」流程（F9 進 Fastboot，`flash emmc0`）
 - [riseproject-dev/android_manifest](https://github.com/riseproject-dev/android_manifest) —— RISE Android 17 BSP，涵蓋 Alibaba A210 EVB，給出 lunch 目標 `aosp_a210_evb-trunk_staging-userdebug`
 - [riseproject-dev/android_kernel_device](https://github.com/riseproject-dev/android_kernel_device) —— 上面的 Kleaf 裝置片段（`alibaba/a210/`、`zhihe_a210.fragment`）
+- [riseproject-dev/android_bootloader_build](https://github.com/riseproject-dev/android_bootloader_build) —— RISE 的啟動鏈建置倉，`alibaba-android-17` 分支產出 a210 用的 U-Boot + OpenSBI（關掉 AVB 校驗，64 GB eMMC 的 Android GPT 分割布局）
+- [BayLibre/android_device_alibaba_a210](https://github.com/BayLibre/android_device_alibaba_a210) —— BayLibre 維護的 AOSP 裝置樹（`android-17` 分支，`PRODUCT_SHIPPING_API_LEVEL` 37）：lunch 目標同樣是 `aosp_a210_evb-trunk_staging-userdebug`，但 `TARGET_ARCH_VARIANT := a210`（C920 與 C908 都沒有 Zvbb，不能用 riscv64 基線），U-Boot/OpenSBI 與核心都按預編譯放進樹裡，偵錯序列埠 `ttyS4` 115200；樹內已帶 RTL8822CS 的 WiFi/藍牙、HDMI 音訊、PowerVR 的 Vulkan 宣告與 riscv64 WebView。與上面 RISE 那套是各自獨立的 Android 17 樹
+- [BayLibre/android_device_alibaba_a210_kernel](https://github.com/BayLibre/android_device_alibaba_a210_kernel) —— 上面那套裝置樹用的核心預編譯倉，`mainline/` 下有 `Image`、`a210-evb.dtb`、`System.map`、`vmlinux.symvers` 與 dlkm 目錄；另有 `glaroque/a210-fixes`、`jmasson/a210-fixes-wifi-bt` 兩條開發分支
 - [RuyiSDK 支援矩陣：A210 SODIMM V2](https://matrix.ruyisdk.org/zh-CN/boards/A210_SODIMM_V2/)（[原始碼目錄](https://github.com/ruyisdk/support-matrix/tree/main/A210_SODIMM_V2) · [others.yml](https://github.com/ruyisdk/support-matrix/blob/main/A210_SODIMM_V2/others.yml)）—— Debian 與 Buildroot 均標 `wip`；`wip` 是「在做，沒做完」，不等於可用
 - [ruyisdk/ruyi](https://github.com/ruyisdk/ruyi) —— 套件管理器，有 zhihe 廠商命名規範，但**尚無 A210 專屬裝置條目**，別以為裝上 ruyi 就有 A210 映像檔
 
