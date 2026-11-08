@@ -79,7 +79,7 @@
 
 - [XuanTie 公式サイト A210 製品ページ](https://www.xrvm.cn/product/board/4565261785988403200)（フロントエンドレンダリングのため本文は取得できません）
 - [XuanTie 公式サイト ホーム](https://www.xrvm.cn/) · [XuanTie C920](https://www.xrvm.cn/product/xuantie/C920) · [C908](https://www.xrvm.cn/product/xuantie/C908)
-- 知合計算のメインサイト `www.zhcomputing.com` は、直結・プロキシ経由とも実測で 504 です。現在使える唯一の公式サイトは上記のドキュメントセンターだけです。ビジネスに関するお問い合わせは business@zhcomputing.com まで。
+- 知合計算のメインサイト [www.zhcomputing.com](http://www.zhcomputing.com/) —— 2026-11-08 に再確認：**http のみ**（`https://` は毎回 504 で証明書チェーンも不完全、直結・プロキシ経由とも同じ）。「Archimedes」シリーズのページは A200 / A300 のみ、ニュースセンターの最新記事は 2025-07 で止まっており、A210 のページはありません。英語版 `en.zhcomputing.com` は「サイト公開準備中」のプレースホルダーです —— A210 の公式資料は引き続き上記のドキュメントセンターが基準です。ビジネスに関するお問い合わせは business@zhcomputing.com まで。
 
 > ドキュメントサイトのフッターにある「GitHub」リンクはプレースホルダー（`github.com/your-org` を指しています）で、実在のプロジェクトではありません。引用しないでください。
 

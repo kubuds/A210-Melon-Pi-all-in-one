@@ -79,7 +79,7 @@ The documentation site is **developer.zhcomputing.com**, currently **2.9.0**, wi
 
 - [XuanTie product page for A210](https://www.xrvm.cn/product/board/4565261785988403200) (client-rendered; no readable body)
 - [XuanTie home](https://www.xrvm.cn/) · [XuanTie C920](https://www.xrvm.cn/product/xuantie/C920) · [C908](https://www.xrvm.cn/product/xuantie/C908)
-- Zhihe's main site `www.zhcomputing.com` returns 504 both directly and through a proxy; the documentation centre above is the only usable official site. Business contact: business@zhcomputing.com
+- Zhihe's main site [www.zhcomputing.com](http://www.zhcomputing.com/) — re-checked on 2026-11-08: **HTTP only** (`https://` returns 504 every time and the certificate chain is incomplete; direct and via proxy alike). The Archimedes section lists only A200 / A300, the news centre stops at 2025-07 and there is no A210 page; the English site `en.zhcomputing.com` redirects to a "site coming soon" placeholder — the documentation centre above remains the authoritative source for A210. Business contact: business@zhcomputing.com
 
 > The "GitHub" link in the docs site footer is a placeholder (`github.com/your-org`) — not a real project, do not cite it.
 

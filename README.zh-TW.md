@@ -79,7 +79,7 @@
 
 - [玄鐵官網 A210 產品頁](https://www.xrvm.cn/product/board/4565261785988403200)（前端渲染，抓不到正文）
 - [玄鐵官網首頁](https://www.xrvm.cn/) · [達摩院玄鐵 C920](https://www.xrvm.cn/product/xuantie/C920) · [C908](https://www.xrvm.cn/product/xuantie/C908)
-- 知合計算主站 `www.zhcomputing.com` 實測直連與走代理均 504，目前唯一可用的官方站點就是上面的文件中心；商務聯絡 business@zhcomputing.com
+- 知合計算主站 [www.zhcomputing.com](http://www.zhcomputing.com/) —— 2026-11-08 複測：**只能走 http**（`https://` 一律 504 且憑證鏈不完整，直連與代理結果一致）；站上「阿基米德系列」只列 A200 / A300，新聞中心最新一則停在 2025-07，**沒有 A210 頁面**，英文站 `en.zhcomputing.com` 跳轉後是「網站待上線」佔位頁 —— A210 的官方資料仍以文件中心為準；商務聯絡 business@zhcomputing.com
 
 > 文件站頁尾的「GitHub」連結是佔位符（指向 `github.com/your-org`），不是真的專案，不要引用。
 

@@ -79,7 +79,7 @@ Die offizielle Doku-Seite ist **developer.zhcomputing.com**, aktuell **2.9.0**, 
 
 - [XuanTie-Produktseite zum A210](https://www.xrvm.cn/product/board/4565261785988403200) (clientseitig gerendert, kein Text abrufbar)
 - [XuanTie-Startseite](https://www.xrvm.cn/) · [XuanTie C920](https://www.xrvm.cn/product/xuantie/C920) · [C908](https://www.xrvm.cn/product/xuantie/C908)
-- Die Hauptseite von Zhihe, `www.zhcomputing.com`, liefert sowohl direkt als auch über einen Proxy 504; die einzige derzeit nutzbare offizielle Website ist das oben genannte Dokumentationszentrum. Geschäftskontakt: business@zhcomputing.com
+- Die Hauptseite von Zhihe, [www.zhcomputing.com](http://www.zhcomputing.com/), am 2026-11-08 erneut geprüft: **nur über http erreichbar** (`https://` liefert durchgehend 504, die Zertifikatskette ist unvollständig; direkt und über Proxy gleiches Ergebnis). Die Reihe Archimedes listet nur A200 / A300, die letzte Meldung im Newscenter stammt von 2025-07, eine A210-Seite gibt es nicht; die englische Seite `en.zhcomputing.com` ist ein Platzhalter („Website kommt bald"). Maßgeblich für A210 bleibt daher das oben genannte Dokumentationszentrum. Geschäftskontakt: business@zhcomputing.com
 
 > Der „GitHub"-Link in der Fußzeile der Doku-Seite ist ein Platzhalter (zeigt auf `github.com/your-org`), kein echtes Projekt – bitte nicht zitieren.
 
