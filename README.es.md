@@ -128,6 +128,7 @@ Ojo: es la placa base **V3**, una generación distinta de la documentación ofic
 
 - [RVCK Linux](https://github.com/RVCK-Project/rvck) — la rama `rvck-6.6` tiene los árboles de dispositivos más completos: [a210.dtsi](https://github.com/RVCK-Project/rvck/blob/rvck-6.6/arch/riscv/boot/dts/zhihe/a210.dtsi) · [a210-melon-pi.dts](https://github.com/RVCK-Project/rvck/blob/rvck-6.6/arch/riscv/boot/dts/zhihe/a210-melon-pi.dts) · [binding del árbol de dispositivos de Zhihe](https://github.com/RVCK-Project/rvck/blob/rvck-6.6/Documentation/devicetree/bindings/riscv/zhihe.yaml); la búsqueda de commits devuelve 41 commits relacionados con la A210, con GPIO/UART/timer/DMA/sdhci
 - [RVCK: issue de seguimiento del soporte de periféricos de la A210](https://github.com/RVCK-Project/rvck/issues/381) · [PR de soporte de periféricos ya fusionado](https://github.com/RVCK-Project/rvck/pull/382)
+- [RVCK: PR #437 de soporte USB para la A210](https://github.com/RVCK-Project/rvck/pull/437) — abierto el 2026-10-22 y **sigue open** (el 2026-11-09 se pidió rebase tras actualizarse `rvck-6.6` y volver a solicitar review): añade dos controladores DWC2 y tres instancias de PHY para USB 2.0, el glue DWC3 y el combo PHY USB 3.1/DP, además del controlador FUSB302 Type-C de la Melon Pi a nivel de placa; [el issue #477 de PCIe y SATA](https://github.com/RVCK-Project/rvck/issues/477) también está abierto
 - [RevyOS Linux](https://github.com/revyos/linux) — [entrada de mantenimiento de la A210](https://github.com/revyos/linux/commit/e214610882a3cced2e158a6824ced2543eb1195d) · [árbol de dispositivos de temperatura y watchdog](https://github.com/revyos/linux/commit/238818df88f8387e07306305462e1b90e7b6b4a4) · [controlador PWM](https://github.com/revyos/linux/commit/dd6ce756803d76e879e9d5cbe6d5f528b8216c2d) · [routing de audio de la Melon Pi V2](https://github.com/revyos/linux/commit/84fbce4e2eb80e7b4bbcd24b83b149beee474146). Ojo: todos estos commits están en la rama `rv/a210-upstream-local`, no en la rama por defecto
 - [RISE Project: riseproject-dev/linux](https://github.com/riseproject-dev/linux) — tiene una rama `alibaba-a210`
 
@@ -144,7 +145,7 @@ Ojo: es la placa base **V3**, una generación distinta de la documentación ofic
 
 **Capa de distribución**
 
-- [riscv/meta-riscv](https://github.com/riscv/meta-riscv) — la capa RISC-V de OpenEmbedded/Yocto incluye la máquina `zhihe-a210` ("Zhihe Computing Archimedes A210", kernel mainline de OSU-OSL, netboot por TFTP), y `conf/machine/zhihe-a210.conf` existe realmente
+- [riscv/meta-riscv](https://github.com/riscv/meta-riscv) — la capa RISC-V de OpenEmbedded/Yocto incluye la máquina `zhihe-a210` ("Zhihe Computing Archimedes A210") y `conf/machine/zhihe-a210.conf` existe; el [PR #744](https://github.com/riscv/meta-riscv/pull/744), fusionado el 2026-11-07, cambió el origen del kernel del BSP a la etiqueta `v7.2.12-a210` de `riseproject-dev/linux` (`a210_evb_defconfig`) y añadió `test-zhihe-a210.yml`: compilación en la nube más una prueba de netboot por TFTP en la board farm de OSU-OSL
 - [RevySR/rvck-image](https://github.com/RevySR/rvck-image) — construcción de rootfs e imágenes de disco; el README describe el flujo «grabar mediante Melon Pi EDK2 fastboot» (F9 para entrar en Fastboot, `flash emmc0`)
 - [riseproject-dev/android_manifest](https://github.com/riseproject-dev/android_manifest) — BSP de RISE Android 17 que cubre la Alibaba A210 EVB, con objetivo de lunch `aosp_a210_evb-trunk_staging-userdebug`
 - [riseproject-dev/android_kernel_device](https://github.com/riseproject-dev/android_kernel_device) — los fragmentos de dispositivo Kleaf de ese BSP (`alibaba/a210/`, `zhihe_a210.fragment`)
@@ -164,6 +165,7 @@ Lo ya listado en la sección 5 no se repite; el resto:
 
 - [kubuds/A210-Melon-Pi-all-in-one](https://github.com/kubuds/A210-Melon-Pi-all-in-one) — este índice
 - [PR #208](https://github.com/ruyisdk/packages-index/pull/208) de `ruyisdk/packages-index` — la estrategia de ruyi para el dispositivo A210 y su grabación
+- [riseproject-dev/board-farm](https://github.com/riseproject-dev/board-farm) — el repositorio de gestión de la board farm de RISE: las primeras 20 placas Zhihe A210 (donadas por Alibaba) están en OSU-OSL, en la Oregon State University, con un pool de Labgrid `a210-yocto` en la Phase 1; el repo contiene las configuraciones client/exporter en `boards/zhihe-a210/`, `a210_netboot.yml` (arranque TFTP en memoria, a210-board-01 a 05), `a210_labgrid_uboot.yml` y `yocto-zhihe-a210.yml`, con commits del 2026-11-03 al 11-08
 
 ---
 

@@ -128,6 +128,7 @@
 
 - [RVCK Linux](https://github.com/RVCK-Project/rvck) —— `rvck-6.6` ブランチのデバイスツリーが最も充実しています：[a210.dtsi](https://github.com/RVCK-Project/rvck/blob/rvck-6.6/arch/riscv/boot/dts/zhihe/a210.dtsi) · [a210-melon-pi.dts](https://github.com/RVCK-Project/rvck/blob/rvck-6.6/arch/riscv/boot/dts/zhihe/a210-melon-pi.dts) · [知合デバイスツリーバインディング](https://github.com/RVCK-Project/rvck/blob/rvck-6.6/Documentation/devicetree/bindings/riscv/zhihe.yaml)。コミット検索では A210 関連のコミットが 41 件あり、GPIO/UART/timer/DMA/sdhci を含みます
 - [RVCK：A210 周辺機器サポートの追跡 issue](https://github.com/RVCK-Project/rvck/issues/381) · [マージ済みの周辺機器サポート PR](https://github.com/RVCK-Project/rvck/pull/382)
+- [RVCK：A210 USB サポート PR #437](https://github.com/RVCK-Project/rvck/pull/437) —— 2026-10-22 に作成、**現在も open**（2026-11-09 のコメントでも、更新された `rvck-6.6` への rebase 後に再レビューを依頼するよう求められています）：USB 2.0 の DWC2 コントローラ 2 個と PHY 3 個、USB 3.1 の DWC3 glue と USB3.1/DP combo PHY、Melon Pi 側の FUSB302 Type-C コントローラまでを含みます。[PCIe と SATA 対応の issue #477](https://github.com/RVCK-Project/rvck/issues/477) も open のままです
 - [RevyOS Linux](https://github.com/revyos/linux) —— [A210 メンテナンス項目](https://github.com/revyos/linux/commit/e214610882a3cced2e158a6824ced2543eb1195d) · [温度管理とウォッチドッグのデバイスツリー](https://github.com/revyos/linux/commit/238818df88f8387e07306305462e1b90e7b6b4a4) · [PWM ドライバー](https://github.com/revyos/linux/commit/dd6ce756803d76e879e9d5cbe6d5f528b8216c2d) · [Melon Pi V2 のオーディオ配線](https://github.com/revyos/linux/commit/84fbce4e2eb80e7b4bbcd24b83b149beee474146)。これらのコミットはすべて `rv/a210-upstream-local` ブランチにあり、デフォルトブランチにはありません
 - [RISE Project：riseproject-dev/linux](https://github.com/riseproject-dev/linux) —— `alibaba-a210` ブランチが存在します
 
@@ -144,7 +145,7 @@
 
 **ディストリビューション層**
 
-- [riscv/meta-riscv](https://github.com/riscv/meta-riscv) —— OpenEmbedded/Yocto の RISC-V レイヤー。マシン表に `zhihe-a210`（"Zhihe Computing Archimedes A210"、OSU-OSL メインラインカーネル、TFTP netboot）があり、`conf/machine/zhihe-a210.conf` は実際に存在します
+- [riscv/meta-riscv](https://github.com/riscv/meta-riscv) —— OpenEmbedded/Yocto の RISC-V レイヤー。マシン表に `zhihe-a210`（"Zhihe Computing Archimedes A210"）があり、`conf/machine/zhihe-a210.conf` は実際に存在します。2026-11-07 にマージされた [PR #744](https://github.com/riscv/meta-riscv/pull/744) で BSP カーネルの取得元が `riseproject-dev/linux` の `v7.2.12-a210` タグ（`a210_evb_defconfig`）に切り替わり、`test-zhihe-a210.yml`（クラウドビルド + OSU-OSL ボードファームでの TFTP ネットブート実測）が追加されました
 - [RevySR/rvck-image](https://github.com/RevySR/rvck-image) —— rootfs／ディスクイメージのビルド。README に「Melon Pi の EDK2 fastboot 経由で書き込む」手順があります（F9 で Fastboot、`flash emmc0`）
 - [riseproject-dev/android_manifest](https://github.com/riseproject-dev/android_manifest) —— RISE Android 17 BSP。Alibaba A210 EVB を対象とし、lunch ターゲット `aosp_a210_evb-trunk_staging-userdebug` を記載しています
 - [riseproject-dev/android_kernel_device](https://github.com/riseproject-dev/android_kernel_device) —— 上記の Kleaf デバイスフラグメント（`alibaba/a210/`、`zhihe_a210.fragment`）
@@ -164,6 +165,7 @@ A210 の GitHub エコシステムは薄く、4 つの系統に整理できま�
 
 - [kubuds/A210-Melon-Pi-all-in-one](https://github.com/kubuds/A210-Melon-Pi-all-in-one) —— 本インデックスのリポジトリ
 - `ruyisdk/packages-index` の [PR #208](https://github.com/ruyisdk/packages-index/pull/208) —— ruyi 側の A210 デバイスと書き込みポリシー
+- [riseproject-dev/board-farm](https://github.com/riseproject-dev/board-farm) —— RISE ボードファームの管理リポジトリ。Alibaba から寄贈された知合 A210 20 枚がオレゴン州立大学の OSU-OSL に置かれ、Phase 1 では Labgrid の `a210-yocto` プールを運用しています。`boards/zhihe-a210/` の client/exporter 設定、`a210_netboot.yml`（TFTP メモリブート、a210-board-01〜05）、`a210_labgrid_uboot.yml`、`yocto-zhihe-a210.yml` の 3 本のパイプラインがあり、2026-11-03 から 11-08 まで継続的にコミットされています
 
 ---
 

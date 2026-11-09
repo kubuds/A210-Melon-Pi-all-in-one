@@ -128,6 +128,7 @@
 
 - [RVCK Linux](https://github.com/RVCK-Project/rvck) — в ветке `rvck-6.6` самые полные деревья устройств: [a210.dtsi](https://github.com/RVCK-Project/rvck/blob/rvck-6.6/arch/riscv/boot/dts/zhihe/a210.dtsi) · [a210-melon-pi.dts](https://github.com/RVCK-Project/rvck/blob/rvck-6.6/arch/riscv/boot/dts/zhihe/a210-melon-pi.dts) · [привязки устройств Zhihe](https://github.com/RVCK-Project/rvck/blob/rvck-6.6/Documentation/devicetree/bindings/riscv/zhihe.yaml); поиск по коммитам даёт 41 коммит, связанный с A210, включая GPIO/UART/timer/DMA/sdhci
 - [RVCK: issue с отслеживанием поддержки периферии A210](https://github.com/RVCK-Project/rvck/issues/381) · [влитый PR с поддержкой периферии](https://github.com/RVCK-Project/rvck/pull/382)
+- [RVCK: PR #437 с поддержкой USB для A210](https://github.com/RVCK-Project/rvck/pull/437) — открыт 2026-10-22 и **всё ещё open** (в комментарии от 2026-11-09 просят сделать rebase на обновлённый `rvck-6.6` и заново запросить review): добавляет два контроллера DWC2 и три экземпляра PHY для USB 2.0, DWC3 glue и combo PHY USB 3.1/DP, а также контроллер FUSB302 Type-C на плате Melon Pi; [issue #477 про PCIe и SATA](https://github.com/RVCK-Project/rvck/issues/477) тоже открыт
 - [RevyOS Linux](https://github.com/revyos/linux) — [запись о сопровождении A210](https://github.com/revyos/linux/commit/e214610882a3cced2e158a6824ced2543eb1195d) · [дерево устройств для термоконтроля и сторожевого таймера](https://github.com/revyos/linux/commit/238818df88f8387e07306305462e1b90e7b6b4a4) · [драйвер PWM](https://github.com/revyos/linux/commit/dd6ce756803d76e879e9d5cbe6d5f528b8216c2d) · [разводка аудио на Melon Pi V2](https://github.com/revyos/linux/commit/84fbce4e2eb80e7b4bbcd24b83b149beee474146). Учтите, что все эти коммиты лежат в ветке `rv/a210-upstream-local`, а не в ветке по умолчанию
 - [RISE Project: riseproject-dev/linux](https://github.com/riseproject-dev/linux) — есть ветка `alibaba-a210`
 
@@ -144,7 +145,7 @@
 
 **Уровень дистрибутивов**
 
-- [riscv/meta-riscv](https://github.com/riscv/meta-riscv) — слой RISC-V для OpenEmbedded/Yocto, в списке машин есть `zhihe-a210` ("Zhihe Computing Archimedes A210", ядро mainline OSU-OSL, TFTP netboot), файл `conf/machine/zhihe-a210.conf` действительно существует
+- [riscv/meta-riscv](https://github.com/riscv/meta-riscv) — слой RISC-V для OpenEmbedded/Yocto, в списке машин есть `zhihe-a210` ("Zhihe Computing Archimedes A210"), файл `conf/machine/zhihe-a210.conf` действительно существует; [PR #744](https://github.com/riscv/meta-riscv/pull/744), влитый 2026-11-07, перевёл источник ядра BSP на тег `v7.2.12-a210` из `riseproject-dev/linux` (`a210_evb_defconfig`) и добавил `test-zhihe-a210.yml`: сборка в облаке плюс проверка TFTP-загрузки на стенде OSU-OSL
 - [RevySR/rvck-image](https://github.com/RevySR/rvck-image) — сборка rootfs и образов диска; в README приведена процедура «прошивка через Melon Pi EDK2 fastboot» (F9 для входа в Fastboot, `flash emmc0`)
 - [riseproject-dev/android_manifest](https://github.com/riseproject-dev/android_manifest) — BSP RISE Android 17 с поддержкой Alibaba A210 EVB, цель lunch — `aosp_a210_evb-trunk_staging-userdebug`
 - [riseproject-dev/android_kernel_device](https://github.com/riseproject-dev/android_kernel_device) — фрагменты устройств Kleaf для упомянутого BSP (`alibaba/a210/`, `zhihe_a210.fragment`)
@@ -164,6 +165,7 @@
 
 - [kubuds/A210-Melon-Pi-all-in-one](https://github.com/kubuds/A210-Melon-Pi-all-in-one) — этот репозиторий-указатель
 - [PR #208](https://github.com/ruyisdk/packages-index/pull/208) в `ruyisdk/packages-index` — устройство A210 и стратегия прошивки на стороне ruyi
+- [riseproject-dev/board-farm](https://github.com/riseproject-dev/board-farm) — репозиторий управления стендом RISE: первые 20 плат Zhihe A210 (подарены Alibaba) стоят в OSU-OSL при Университете штата Орегон, на Phase 1 работает пул Labgrid `a210-yocto`; в репозитории есть конфиги client/exporter в `boards/zhihe-a210/`, `a210_netboot.yml` (TFTP-загрузка в память, a210-board-01–05), `a210_labgrid_uboot.yml` и `yocto-zhihe-a210.yml`, коммиты идут с 2026-11-03 по 11-08
 
 ---
 
