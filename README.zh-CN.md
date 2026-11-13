@@ -128,7 +128,7 @@
 
 - [RVCK Linux](https://github.com/RVCK-Project/rvck) —— `rvck-6.6` 分支里设备树最全： [a210.dtsi](https://github.com/RVCK-Project/rvck/blob/rvck-6.6/arch/riscv/boot/dts/zhihe/a210.dtsi) · [a210-melon-pi.dts](https://github.com/RVCK-Project/rvck/blob/rvck-6.6/arch/riscv/boot/dts/zhihe/a210-melon-pi.dts) · [知合设备树绑定](https://github.com/RVCK-Project/rvck/blob/rvck-6.6/Documentation/devicetree/bindings/riscv/zhihe.yaml)；提交检索有 41 条 A210 相关提交，含 GPIO/UART/timer/DMA/sdhci
 - [RVCK：A210 外设支持跟踪 issue](https://github.com/RVCK-Project/rvck/issues/381) · [已合并的外设支持 PR](https://github.com/RVCK-Project/rvck/pull/382)
-- [RVCK：A210 USB 支持 PR #437](https://github.com/RVCK-Project/rvck/pull/437) —— 2026-10-22 开出、**仍 open**，但作者在 2026-11-11 把它转成了 **draft**：此前已 rebase 到更新后的 `rvck-6.6`（19 个补丁，新增 Melon Pi 第二个 GMAC、UART pinctrl 修正、GPIO ranges、Zicbop block size 与设备树整理），当天 Icenowy 又对 `a210.dtsi` 提了三条设备树意见（节点 reg 重叠的，建议改回 syscon 或由 clk_usb 注册一个 aux device；两个独立 PHY 应各建一个节点；`syscon` 属性名要加厂商前缀），11-12 的 CI 复跑 kernel-build 等四项全部通过。功能本体：补 USB 2.0 的两个 DWC2 控制器与三个 PHY 实例、USB 3.1 的 DWC3 glue 与 USB3.1/DP combo PHY，板级带上 Melon Pi 的 FUSB302 Type-C 控制器；[PCIe 与 SATA 支持 issue #477](https://github.com/RVCK-Project/rvck/issues/477) 同样 open
+- [RVCK：A210 USB 支持 PR #437](https://github.com/RVCK-Project/rvck/pull/437) —— 2026-10-22 开出、**仍 open**，但作者在 2026-11-11 把它转成了 **draft**：此前已 rebase 到更新后的 `rvck-6.6`（20 个补丁，新增 Melon Pi 第二个 GMAC、UART pinctrl 修正、GPIO ranges、Zicbop block size 与设备树整理），当天 Icenowy 又对 `a210.dtsi` 提了三条设备树意见（节点 reg 重叠的，建议改回 syscon 或由 clk_usb 注册一个 aux device；两个独立 PHY 应各建一个节点；`syscon` 属性名要加厂商前缀），11-13 的 CI 全流程通过（check-patch、kunit、kernel-build 与 LAVA QEMU 启动回收）。功能本体：补 USB 2.0 的两个 DWC2 控制器与三个 PHY 实例、USB 3.1 的 DWC3 glue 与 USB3.1/DP combo PHY，板级带上 Melon Pi 的 FUSB302 Type-C 控制器；[PCIe 与 SATA 支持 issue #477](https://github.com/RVCK-Project/rvck/issues/477) 同样 open
 - [RevyOS Linux](https://github.com/revyos/linux) —— [A210 维护条目](https://github.com/revyos/linux/commit/e214610882a3cced2e158a6824ced2543eb1195d) · [温控与看门狗设备树](https://github.com/revyos/linux/commit/238818df88f8387e07306305462e1b90e7b6b4a4) · [PWM 驱动](https://github.com/revyos/linux/commit/dd6ce756803d76e879e9d5cbe6d5f528b8216c2d) · [Melon Pi V2 音频走线](https://github.com/revyos/linux/commit/84fbce4e2eb80e7b4bbcd24b83b149beee474146)。注意这些提交都在 `rv/a210-upstream-local` 分支上，不在默认分支
 - [RISE Project：riseproject-dev/linux](https://github.com/riseproject-dev/linux) —— 存在 `alibaba-a210` 分支
 
@@ -145,7 +145,7 @@
 
 **发行版层**
 
-- [riscv/meta-riscv](https://github.com/riscv/meta-riscv) —— OpenEmbedded/Yocto 的 RISC-V 层，机器表里有 `zhihe-a210`（"Zhihe Computing Archimedes A210"），`conf/machine/zhihe-a210.conf` 实际存在；[PR #744](https://github.com/riscv/meta-riscv/pull/744) 于 2026-11-07 合并，把 BSP 内核源切到 `riseproject-dev/linux` 的 `v7.2.12-a210` 标签（`a210_evb_defconfig`），并加上 `test-zhihe-a210.yml`：云端构建 + OSU-OSL 板场 TFTP 网络启动实测
+- [riscv/meta-riscv](https://github.com/riscv/meta-riscv) —— OpenEmbedded/Yocto 的 RISC-V 层，机器表里有 `zhihe-a210`（"Zhihe Computing Archimedes A210"），`conf/machine/zhihe-a210.conf` 实际存在；[PR #744](https://github.com/riscv/meta-riscv/pull/744) 于 2026-11-07 合并，把 BSP 内核源切到 `riseproject-dev/linux` 的 `v7.2.12-a210` 标签（`a210_evb_defconfig`），并加上 `test-zhihe-a210.yml`：云端构建 + OSU-OSL 板场 TFTP 网络启动实测；[PR #748](https://github.com/riscv/meta-riscv/pull/748) 于 2026-11-10 合并，扩充该工作流的触发路径过滤并改用 `readlink -f`
 - [RevySR/rvck-image](https://github.com/RevySR/rvck-image) —— rootfs/磁盘镜像构建，README 给出「通过 Melon Pi EDK2 fastboot 刷写」流程（F9 进 Fastboot，`flash emmc0`）
 - [riseproject-dev/android_manifest](https://github.com/riseproject-dev/android_manifest) —— RISE Android 17 BSP，覆盖 Alibaba A210 EVB，给出 lunch 目标 `aosp_a210_evb-trunk_staging-userdebug`
 - [riseproject-dev/android_kernel_device](https://github.com/riseproject-dev/android_kernel_device) —— 上面的 Kleaf 设备片段（`alibaba/a210/`、`zhihe_a210.fragment`）
@@ -166,7 +166,7 @@ A210 的 GitHub 生态很薄，能归成四条线：**RVCK**（设备树最全�
 
 - [kubuds/A210-Melon-Pi-all-in-one](https://github.com/kubuds/A210-Melon-Pi-all-in-one) —— 本索引仓库
 - `ruyisdk/packages-index` 的 [PR #208](https://github.com/ruyisdk/packages-index/pull/208) —— ruyi 侧的 A210 设备与烧录策略
-- [riseproject-dev/board-farm](https://github.com/riseproject-dev/board-farm) —— RISE 板场管理仓：首批 20 块知合 A210（阿里捐赠）放在俄勒冈州立大学 OSU-OSL，Phase 1 用 Labgrid 起 `a210-yocto` 板池；仓内有 `boards/zhihe-a210/` 的 client/exporter 配置、`a210_netboot.yml`（TFTP 内存启动，a210-board-01 至 05）、`a210_labgrid_uboot.yml` 与 `yocto-zhihe-a210.yml` 三条流水线，2026-11-03 至 11-08 持续提交
+- [riseproject-dev/developer-cloud](https://github.com/riseproject-dev/developer-cloud)（原 `board-farm`，2026-11-11 改名）—— RISE 的 RISC-V Developer Cloud 管理仓：首批 20 块知合 A210（阿里捐赠）放在俄勒冈州立大学 OSU-OSL，Phase 1 用 Labgrid 起 `a210-yocto` 板池，另有 Scaleway（法国）与 SOPIC（中国）机房；仓内有 `boards/zhihe-a210/` 的 client/exporter 配置与 pytest 用例，`.github/workflows/` 下四条 A210 流水线（`a210_netboot.yml` 的 TFTP 内存启动 a210-board-01 至 05、`a210_labgrid_uboot.yml`、`yocto-zhihe-a210.yml`，以及 2026-11-11 新增的 `a210_telemetry.yml` 非破坏性硬件遥测）；同期 hub 侧加了板卡标签发布与标签/搜索过滤、用 ADB 或 UART 自动识别 Android 板，并修掉 zhihe-a210 的 UART 回显干扰内核版本探测的问题
 
 ---
 
