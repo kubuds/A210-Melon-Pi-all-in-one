@@ -98,7 +98,7 @@
 
 - 解压后得到 `emmc-*.img`、`bootzero-rvbl.bin`、`fastboot_images.sh` / `.bat`，进烧录模式后直接跑脚本
 - **官方制品库目录索引**（比文档表格更全）：[downloads/release/](http://developer.zhcomputing.com/downloads/release/) —— `zhihesdk` 下有 v2.7.0 / v2.8.0 / v2.8.1 / v2.9.0，另有 `develop/`、`develop-test/` 两个开发快照目录（其中 a210 镜像最新一份是 2026-02-05，比 v2.9.0 旧，别当新版用），`npu` 下有 v1.3–v2.1（ovx-compiler、torq-llm、uca-nn、viplite），`tools` 下有 1.17 GB 的 `ubuntu-24.04-x86_64.v1.7.0.tar.gz` 构建容器
-- **官方制品库 2026-11-13 起整站 503**：目录索引与上面四条镜像直链现在都只返回一个 4.6 MB 的 JFrog Platform 加载页，未知路径同样 503，文件本体暂时下不动 —— 链接按原样保留，恢复后再复测
+- **官方制品库 2026-11-13 起曾整站 503，2026-11-18 复测已恢复**：目录索引与上面四条镜像直链目前都是 200，`br2image-v2.9.0-a210_evb.tar.gz` 返回 188,113,587 字节（179.4 MB）、`usb_driver_r13-windows.zip` 8,682,039 字节，与表里记的大小一致；故障期间同一路径返回的是 4.6 MB 的 JFrog Platform 加载页
 - 想用 RuyiSDK 复现安装：[ruyisdk/packages-index PR #208](https://github.com/ruyisdk/packages-index/pull/208) 把 fastboot 流程、2.8.1 的 Buildroot 与 Debian 镜像包、分区表都做成了 ruyi 条目，内含分区映射与校验和，可用于交叉核对
 
 ---
@@ -123,7 +123,7 @@
 
 - [[PATCH 00/18] riscv: add initial support for Zhihe A210 and Melon Pi](https://lists.infradead.org/pipermail/linux-riscv/2026-October/101909.html) —— 首版主线支持（UART/clock/reset/pinctrl + DT），已在 Melon Pi V2 上 8 核全开验证；设备树文件名 `a210-melonpi-v1.dts` / `-v2.dts` 就是「Melon Pi」这个名字的真正出处
 - [[PATCH RFC 00/18] riscv: add initial Zhihe A210 support using SCMI clocks and resets](https://lists.infradead.org/pipermail/linux-riscv/2026-October/102222.html) —— 2026-10-27 的重做版（作者编号 v2）：A210 还有一颗 E902 管理核，时钟与复位寄存器实际由它运行的 Zephyr SCMI 固件掌管，这一版删掉原生 clk/reset 驱动、改走标准 SCMI clock/reset 协议，另加 AP→E902 门铃 mailbox 驱动；已在 Melon Pi V2 上 8 核起到 UART shell。原生驱动那版（上面那条）与这一版**截至 2026-11-02 都还没进主线**；最新的 v3 见下条
-- [[PATCH RFC v3 00/17] riscv: add initial Zhihe A210 support using SCMI clocks and resets](https://lists.infradead.org/pipermail/linux-riscv/2026-November/102729.html) —— 2026-11-02 的 v3：rebase 到 v7.4-rc1；`arm_scmi` 去掉 ARM 架构依赖（RISC-V 也能编），SCMI clock/reset ID 从 dt-bindings 移进 DTS 旁的 header，mailbox 绑定改为固定的 local / remote 区域；Melon Pi V2 用 riscv defconfig 8 核起到串口 shell。仍因等知合固件原生支持 SCMI 而保持 RFC
+- [[PATCH RFC v3 00/17] riscv: add initial Zhihe A210 support using SCMI clocks and resets](https://lists.infradead.org/pipermail/linux-riscv/2026-November/102729.html) —— 2026-11-02 的 v3：rebase 到 v7.4-rc1；`arm_scmi` 去掉 ARM 架构依赖（RISC-V 也能编），SCMI clock/reset ID 从 dt-bindings 移进 DTS 旁的 header，mailbox 绑定改为固定的 local / remote 区域；Melon Pi V2 用 riscv defconfig 8 核起到串口 shell。仍因等知合固件原生支持 SCMI 而保持 RFC；另：这一版 dt-bindings 里 V3 底板沿用 V2 的 compatible（`zhihe,a210-melonpi-v2`），上游没有单独的 v3 板名，V3 硬件套 V2 的 DTB 属预期行为（该绑定已由 Conor Dooley ack）
 
 **内核与设备树（还在各家的开发线里）**
 
@@ -147,8 +147,11 @@
 **发行版层**
 
 - [riscv/meta-riscv](https://github.com/riscv/meta-riscv) —— OpenEmbedded/Yocto 的 RISC-V 层，机器表里有 `zhihe-a210`（"Zhihe Computing Archimedes A210"），`conf/machine/zhihe-a210.conf` 实际存在；[PR #744](https://github.com/riscv/meta-riscv/pull/744) 于 2026-11-07 合并，把 BSP 内核源切到 `riseproject-dev/linux` 的 `v7.2.12-a210` 标签（`a210_evb_defconfig`），并加上 `test-zhihe-a210.yml`：云端构建 + OSU-OSL 板场 TFTP 网络启动实测；[PR #748](https://github.com/riscv/meta-riscv/pull/748) 于 2026-11-10 合并，扩充该工作流的触发路径过滤并改用 `readlink -f`
+- [git.osuosl.org/osuosl/zhihe-a210-kernel](https://git.osuosl.org/osuosl/zhihe-a210-kernel) —— 俄勒冈州立大学 OSU-OSL 自建的 A210 内核仓，11 条分支（`osl/a210-mainline`、`osl/a210-6.6.x-lts` 与各版本 backup）；标签 `v7.2.12-osl-a210`（2026-10-23，把 OpenSBI 保留内存标成 `no-map`）正是 meta-riscv 文档里 TFTP 网络启动指的那一版，另有 v2.9.0 / v2.8.1 / v2.8.0 / v2.7.0 与厂商 2.6.0-rc0
+- [openRuyi-BSP-RPM/zhihe-a210](https://git.openruyi.cn/openRuyi-BSP-RPM/zhihe-a210) —— openRuyi 的 A210 BSP RPM spec 仓（4 次提交，最后一次 2026-08-21）：`firmware-zhihe-a210`、`linux-zhihe-a210-vendor-6.6`、`linux-zhihe-a210-vendor-6.6-rogue` 三个包；同一组织下还有 `rvck`、`spacemit-k1`、`spacemit-k3` 的同类仓
+- irradium 3.8 的 `zhihe_a210` 镜像 —— core 与 xfce 两套，内核 6.6.0 / 6.6.157 / 7.2.3 / 7.3.0-rc4，构建于 2026-09-21 至 09-23，单份 `img.zst` 约 2.8 GB（实测 xfce 6.6.0 一份 2.84 GB）：[镜像站目录](http://ubuntu-releases.acc.umu.se/mirror/irradium.org/images/zhihe_a210/)（官方 `dl.irradium.org` 对该目录 403，官方 boards 页也没列 A210，按社区构建对待）；其 README 给了 A210 的 fastboot 刷 bootloader 步骤与 u-boot 变量（`/EFI/irradium/grubriscv64.efi` 与 `/dtb/zhihe/a210-dev.dtb`）
 - [RevySR/rvck-image](https://github.com/RevySR/rvck-image) —— rootfs/磁盘镜像构建，README 给出「通过 Melon Pi EDK2 fastboot 刷写」流程（F9 进 Fastboot，`flash emmc0`）
-- [riseproject-dev/android_manifest](https://github.com/riseproject-dev/android_manifest) —— RISE Android 17 BSP，覆盖 Alibaba A210 EVB，给出 lunch 目标 `aosp_a210_evb-trunk_staging-userdebug`
+- [riseproject-dev/android_manifest](https://github.com/riseproject-dev/android_manifest) —— RISE Android 17 BSP，覆盖 Alibaba A210 EVB，给出 lunch 目标 `aosp_a210_evb-trunk_staging-userdebug`；2026-10-14 的 [android-17-v1.0 发布](https://github.com/riseproject-dev/android_manifest/releases/tag/android-17-v1.0) 另给了预编译的 `rise-android-17-v1.0-a210-evb.tar.gz`（1.24 GB）与 `SHA256SUMS`，同一 tag 下还有 K3 Pico-ITX 一份 —— 内核 android-mainline 7.1，图形走上游 `drm/imagination` 与 Mesa；2026-11-17 起加了[夜间流水线](https://github.com/riseproject-dev/android_manifest/blob/android-17/.github/workflows/nightly.yml)：01:23 UTC，钉住的 manifest 与上一份不同才构建，a210 与 k3 依次打包，只留最近 7 个 pre-release
 - [riseproject-dev/android_kernel_device](https://github.com/riseproject-dev/android_kernel_device) —— 上面的 Kleaf 设备片段（`alibaba/a210/`、`zhihe_a210.fragment`）
 - [riseproject-dev/android_bootloader_build](https://github.com/riseproject-dev/android_bootloader_build) —— RISE 的启动链构建仓，`alibaba-android-17` 分支产出 a210 用的 U-Boot + OpenSBI（关掉 AVB 校验，64 GB eMMC 的 Android GPT 布局）
 - [riseproject-dev/android_vendor_rise](https://github.com/riseproject-dev/android_vendor_rise) —— RISE 的预编译启动链与固件仓（`alibaba/a210/bootloader/`）：`u-boot.bin`、`spl-with-fit-rvbl.bin`、`bootzero-rvbl.bin`、`riscv-boot.itb`、`emmc-gpt_primary.img`、`a210.dtb`，外加 RTL8822CS 的蓝牙固件；CI 每 3 小时按上游 bootloader 仓重建一次，想要一份现成的 U-Boot + OpenSBI 组合给 A210 EVB 时不用自己编
